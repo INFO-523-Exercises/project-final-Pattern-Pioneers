@@ -1,14 +1,39 @@
 ---
 title: "Proposal title"
 subtitle: "Proposal"
-format: html
+author: 
+  - name: "Pattern Pioneers - "
+    affiliations:
+      - name: "School of Information, University of Arizona"
+description: ""
+format:
+  html:
+    code-tools: true
+    code-overflow: wrap
+    code-line-numbers: true
+    embed-resources: true
 editor: visual
+code-annotations: hover
+categories: 
+  - Data Mining
+execute:
+  warning: false
 ---
 
-```{r}
-#| label: load-pkgs
-#| message: false
-library(tidyverse)
+## Load required packages
+
+```{r load_pkgs, message=FALSE, output=FALSE}
+#| code-fold: true
+#| code-summary: "Installed Packages"
+
+### GETTING THE LIBRARIES
+if (!require(pacman))
+  install.packages(pacman)
+
+pacman::p_load(tidyverse,
+               tidytuesdayR,
+               dlookr,
+               formattable)
 ```
 
 ## Dataset
@@ -22,10 +47,26 @@ A brief description of your dataset including its provenance, dimensions, etc. a
 
 Make sure to load the data and use inline code for some of this information.
 
+## Examine data
+
+Using dlookr's `describe()` and `diagnose()` - some basic EDA
+
 ## Questions
 
-The two questions you want to answer.
+### Question 1
+
+### Question 2
 
 ## Analysis plan
 
 -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+
+### Approach for question 1
+
+### Approach for question 2
+
+## Organization
+
+### Plan of Attack
+
+### Repo Organization
