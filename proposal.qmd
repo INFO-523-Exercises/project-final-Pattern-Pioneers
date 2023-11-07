@@ -51,6 +51,8 @@ Make sure to load the data and use inline code for some of this information.
 
 Using dlookr's `describe()` and `diagnose()` - some basic EDA
 
+## Motivation
+
 ## Questions
 
 ### Question 1
@@ -69,4 +71,40 @@ Using dlookr's `describe()` and `diagnose()` - some basic EDA
 
 ### Plan of Attack
 
+|               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
+|:---------------:|---------------------|:---------------:|:---------------:|
+|       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
+|                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
+|     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
+|                \-                 | Data cleaning and Data pre-processing based on EDA                     |        TBD        |   TBD    |
+|                \-                 | Question specific exploration and identify initial trends and patterns |        TBD        |   TBD    |
+|     November 16^th^ to 22^nd^     | Model training for Q1                                                  |        TBD        |   TBD    |
+|                \-                 | Model training for Q2                                                  |        TBD        |   TBD    |
+|     November 23^rd^ to 29^th^     | Continue Model training and testing for Q1 and Q2                      |        TBD        |   TBD    |
+|                \-                 | Improving the models if there is a need                                |        TBD        |   TBD    |
+| November 30^th^ to December 6^th^ | Refining the code for code review with comments                        |        TBD        |   TBD    |
+|                \-                 | Generate insights from the model output                                |        TBD        |   TBD    |
+|     December 7^th^ to 13^th^      | Review the generated models                                            |        TBD        |   TBD    |
+|                \-                 | Write-up and presentation for the project                              |     Everyone      | Everyone |
+
+: {.hover}
+
 ### Repo Organization
+
+The following are the folders involved in the Project repository.
+
+-   **'data/':** Used for storing any necessary data files for the project, such as input files.
+
+-   **'images/':** Used for storing image files used in the project.
+
+-   **'presentation_files/':** Folder for having presentation related files.
+
+-   **'\_extra/':** Used to brainstorm our analysis which won't impact our project workflow.
+
+-   **'\_freeze/':** This folder is used to store the generated files during the build process. These files represent the frozen state of the website at a specific point in time.
+
+-   **'\_site/':** Folder used to store the generated static website files after the site generator processes the quarto document.
+
+-   **'.github/':** Folder for storing github templates and workflow.
+
+We will be creating few folders inside `images/` folder for storing question specific images and presentation related images which are generated through out the plot.
