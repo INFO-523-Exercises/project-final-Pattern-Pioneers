@@ -10,7 +10,7 @@ This project was developed by **Pattern Pioneers** For [INFO 523 - Data Mining a
 
 -   Team member 2: One sentence description of Team member 2 (e.g., year, major, etc.).
 
--   Team member 3: One sentence description of Team member 3 (e.g., year, major, etc.).
+-   Team member 3: Pranshu Singh Rawat, First-year graduate student in Data Science at University of Arizona., github: @pranshusinghrawat.
 
 -   Team member 4: One sentence description of Team member 4 (e.g., year, major, etc.).
 
