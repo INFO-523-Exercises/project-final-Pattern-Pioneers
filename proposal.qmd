@@ -156,7 +156,7 @@ We will further continue our analysis where we will be focusing majorly on the k
 
 Post that we will identify important summary statistics for key variables such as `Purchase_Categories`. Once the data is clean, we will employ Statistical Analysis tools such as `Logistic Regression` or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender). For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
 
-## Variables of focus for both questions
+### Variables of focus for both questions
 
 | Variable                              | Description                                                                                |
 |-----------------------|------------------------------------------------------|
