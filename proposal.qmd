@@ -154,12 +154,20 @@ For visualization, we will harness the capabilities of R's ggplot2 package to cr
 
 ### Approach for question 2
 
+We will further continue our analysis where we will be focusing majorly on the key features such as age, Gender, Purchase_Categories and Cart_Completion_Frequency to predict which product is of particular interest to a demography. Again, we will make sure the data is clean for the concerned features and address any missing or incorrect data.
+
+Post that we will identify important summary statistics for key variables such as Purchase_Categories
+
+Once the data is clean, we will employ Statistical Analysis tools such as Logistic Regression or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender)
+
+For visualisation, we will be using heatmaps and bar charts to illustrate the relationship between the target variables.
+
 ## Organization
 
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:---------------:|--------------------|:---------------:|:---------------:|
+|:----------------:|--------------------|:----------------:|:----------------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
 |     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
