@@ -1,5 +1,5 @@
 ---
-title: "Consumer Behavour Analysis"
+title: "Consumer Behaviour Analysis"
 subtitle: "INFO 523 - Project Final"
 author: 
   - name: "Pattern Pioneers - Vishal, Joel, Pranshu, Shashwat, Bharath"

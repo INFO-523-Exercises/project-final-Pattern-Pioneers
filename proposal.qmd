@@ -1,5 +1,5 @@
 ---
-title: "Consumer Behavour Analysis"
+title: "Consumer Behaviour Analysis"
 subtitle: "Proposal"
 author: 
   - name: "Pattern Pioneers - Vishal, Joel, Pranshu, Shashwat, Bharath"
@@ -105,7 +105,7 @@ nrow(data)
 ncol(data)
 ```
 
--   And we have 23 columns in the dataset.
+-   And we have 22 columns in the dataset.
 
 ## Categorical variable summary
 
