@@ -145,7 +145,7 @@ new_data |>
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:----------------:|--------------------|:----------------:|:----------------:|
+|:----------------:|-------------------|:----------------:|:----------------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
 |     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
