@@ -30,10 +30,11 @@ execute:
 if (!require(pacman))
   install.packages(pacman)
 
-pacman::p_load(tidyverse,
-               tidytuesdayR,
-               dlookr,
-               formattable)
+pacman::p_load(tidyverse,   # Data wrangling
+               dlookr,      # Exploratory Data Analysis
+               formattable, # Present neat table format
+               gt,          # Alternating formatting for the tables
+               gtsummary)   # Summary for the tables
 ```
 
 ## Dataset
@@ -41,15 +42,87 @@ pacman::p_load(tidyverse,
 ```{r}
 #| label: load-dataset
 #| message: false
+#| code-fold: true
+
+# Using the original data
+# Loading the csv into a variable using read_csv
+
+data <- read_csv("data/Amazon_Customer_Behavior_Survey.csv")
+
+# Removing unwanted column like "timestamp".
+
+data <- data %>% select(-Timestamp)
+
+
 ```
 
-A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
-
-Make sure to load the data and use inline code for some of this information.
+This is a dataset collected for analyzing the behavioral analysis of Amazon's consumers consists of a comprehensive collection of customer interactions,browsing patterns within the Amazon ecosystem. It includes a wide range of variables such as customer demographics, user interaction, and reviews. The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform. By analyzing this dataset, researchers and analysts can gain a deeper understanding of consumer behavior, identify trends, optimize marketing strategies, and improve the overall customer experience on Amazon. The Dataset contains `N=602` observations.
 
 ## Examine data
 
 Using dlookr's `describe()` and `diagnose()` - some basic EDA
+
+```{r}
+#| label: data-summary-describe
+#| message: false
+#| code-fold: true
+# Summary statistics of numerical column
+
+data |> 
+    describe() |>
+  formattable()
+```
+
+```{r}
+#| label: data-summary-diagnose 
+#| message: false
+#| code-fold: true
+
+# using Diagnose from dlookr to look for column summary
+data |> 
+  diagnose() |>
+  formattable()
+```
+
+Checking the number of rows and columns with `nrow` and `ncol`:
+
+```{r}
+#| label: No-of-row
+#| message: false
+#| code-fold: true
+
+# Number of rows in the data
+nrow(data)
+```
+
+-   So we have totally 602 data points in the Amazon Consumer behavior dataset
+
+```{r}
+#| label: No-of-col 
+#| message: false
+#| code-fold: true
+# Number of columns in the data
+ncol(data)
+```
+
+-   And we have 23 columns in the dataset.
+
+## Categorical variable summary
+
+Using `gtsummary` for table summary (`tbl_summary()`)of selected categorical columns:
+
+```{r}
+#| label: gt-summary
+#| message: false
+#| code-fold: true
+# Selecting the required columns for summary 
+ new_data <-data %>% select(Browsing_Frequency,Purchase_Frequency,Purchase_Categories)
+  
+# Using gtsummary
+ 
+new_data |>
+  gtsummary::tbl_summary()
+```
 
 ## Motivation
 
@@ -72,7 +145,7 @@ Using dlookr's `describe()` and `diagnose()` - some basic EDA
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:---------------:|---------------------|:---------------:|:---------------:|
+|:----------------:|--------------------|:----------------:|:----------------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
 |     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
