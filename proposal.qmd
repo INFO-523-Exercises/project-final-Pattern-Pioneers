@@ -138,6 +138,10 @@ new_data |>
 
 ### Approach for question 1
 
+Our analysis will commence with a precise exploratory data analysis (EDA) using R, where we'll focus on key variables such as 'Purchase_Frequency', 'Product_Search_Method', and 'Customer_Reviews_Importance', to unearth their potential impact on cart abandonment. During the data cleaning stage, we will ensure that columns like 'age', 'Gender', and 'Browsing_Frequency' are correctly formatted and free of missing values. Subsequently, statistical techniques---such as logistic regression or decision trees---will be applied to assess the influence of factors like 'Personalized_Recommendation_Frequency' and 'Search_Result_Exploration' on cart abandonment behavior.
+
+For visualization, we will harness the capabilities of R's ggplot2 package to create comprehensive and interpretable graphics, such as correlation heatmaps and bar charts, showcasing the interplay between cart abandonment and various customer behavior metrics.. This meticulous approach is designed to provide us with robust insights, empowering us to enhance the shopping experience and curtail cart abandonment rates effectively.
+
 ### Approach for question 2
 
 ## Organization
@@ -145,7 +149,7 @@ new_data |>
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:---------------------------------:|------------------------------------------------------------------------|:-----------------:|:--------:|
+|:------------:|--------------------------------|:-----------:|:-----------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
 |     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
