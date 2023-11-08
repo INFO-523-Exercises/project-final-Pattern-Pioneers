@@ -1,7 +1,12 @@
 ---
-title: "Project title"
+title: "Consumer Behavour Analysis"
 subtitle: "INFO 523 - Project Final"
-author: "Team name"
+subtitle: "Proposal"
+author: 
+  - name: "Pattern Pioneers - Vishal, Joel, Pranshu, Shashwat, Bharath"
+    affiliations:
+      - name: "School of Information, University of Arizona"
+description: ""
 format: html
 editor: visual
 ---

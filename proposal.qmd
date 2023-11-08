@@ -1,8 +1,8 @@
 ---
-title: "Proposal title"
+title: "Consumer Behavour Analysis"
 subtitle: "Proposal"
 author: 
-  - name: "Pattern Pioneers - "
+  - name: "Pattern Pioneers - Vishal, Joel, Pranshu, Shashwat, Bharath"
     affiliations:
       - name: "School of Information, University of Arizona"
 description: ""
@@ -126,7 +126,7 @@ new_data |>
 
 ## Motivation
 
-Our main motivation for selecting the dataset **Amazon consumer Behaviour Dataset** that we came across in Kaggle was to unveil some customer insights which can be used for enhancing the customer experiance or the improving the business implementation after analyzing this dataset.
+Our main motivation for selecting the dataset **Amazon consumer Behaviour Dataset** that we came across in Kaggle was to unveil some customer insights which can be used for enhancing the customer experience or the improving the business implementation after analyzing this dataset.
 
 In our first question "**What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?**" we are attempting to understand the reasons behind the customer abandoning the purchase in their cart for increasing the **conversion rate(**the percentage of users who actually complete a purchase**)** for amazon. It will also help us in enhancing the customer experience by making the application or the website more user-friendly and intuitive so that the user is able to find the right product and proceed to complete his purchase in an effortless manner.
 
@@ -144,45 +144,41 @@ Which demographic (on the basis of gender and age) is most likely to purchase a 
 
 ## Analysis plan
 
--   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
-
 ### Approach for question 1
 
-Our analysis will commence with a precise exploratory data analysis (EDA) using R, where we'll focus on key variables such as 'Purchase_Frequency', 'Product_Search_Method', and 'Customer_Reviews_Importance', to unearth their potential impact on cart abandonment. During the data cleaning stage, we will ensure that columns like 'age', 'Gender', and 'Browsing_Frequency' are correctly formatted and free of missing values. Subsequently, statistical techniques---such as logistic regression or decision trees---will be applied to assess the influence of factors like 'Personalized_Recommendation_Frequency' and 'Search_Result_Exploration' on cart abandonment behavior.
+Our analysis will commence with a precise exploratory data analysis (EDA) using R, where we'll focus on key variables such as `Purchase_Frequency`, `Product_Search_Method`, and `Customer_Reviews_Importance`, to unearth their potential impact on cart abandonment. During the data cleaning stage, we will ensure that columns like `age`, `Gender`, and `Browsing_Frequency` are correctly formatted and free of missing values. Subsequently, statistical techniques---such as logistic regression or decision trees---will be applied to assess the influence of factors like `Personalized_Recommendation_Frequency` and `Search_Result_Exploration` on cart abandonment behavior.
 
-For visualization, we will harness the capabilities of R's ggplot2 package to create comprehensive and interpretable graphics, such as correlation heatmaps and bar charts, showcasing the interplay between cart abandonment and various customer behavior metrics.. This meticulous approach is designed to provide us with robust insights, empowering us to enhance the shopping experience and curtail cart abandonment rates effectively.
+For visualization, we will harness the capabilities of R's ggplot2 package to create comprehensive and interpretable graphics, such as correlation heat-maps and bar charts, showcasing the interplay between cart abandonment and various customer behavior metrics.. This meticulous approach is designed to provide us with robust insights, empowering us to enhance the shopping experience and curtail cart abandonment rates effectively.
 
 ### Approach for question 2
 
-We will further continue our analysis where we will be focusing majorly on the key features such as age, Gender, Purchase_Categories and Cart_Completion_Frequency to predict which product is of particular interest to a demography. Again, we will make sure the data is clean for the concerned features and address any missing or incorrect data.
+We will further continue our analysis where we will be focusing majorly on the key features such as `age`, `Gender`, `Purchase_Categories` and `Cart_Completion_Frequency` to predict which product is of particular interest to a demography. Again, we will make sure the data is clean for the concerned features and address any missing or incorrect data.
 
-Post that we will identify important summary statistics for key variables such as Purchase_Categories
+Post that we will identify important summary statistics for key variables such as `Purchase_Categories`.
 
-Once the data is clean, we will employ Statistical Analysis tools such as Logistic Regression or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender)
+Once the data is clean, we will employ Statistical Analysis tools such as `Logistic Regression` or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender)
 
-For visualisation, we will be using heatmaps and bar charts to illustrate the relationship between the target variables.
+For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
 
 ## Organization
 
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:----------------:|--------------------|:----------------:|:----------------:|
+|:----------------:|-------------------|:----------------:|:----------------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
-|     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |        TBD        |   TBD    |
-|                \-                 | Data cleaning and Data pre-processing based on EDA                     |        TBD        |   TBD    |
-|                \-                 | Question specific exploration and identify initial trends and patterns |        TBD        |   TBD    |
-|     November 16^th^ to 22^nd^     | Model training for Q1                                                  |        TBD        |   TBD    |
-|                \-                 | Model training for Q2                                                  |        TBD        |   TBD    |
-|     November 23^rd^ to 29^th^     | Continue Model training and testing for Q1 and Q2                      |        TBD        |   TBD    |
-|                \-                 | Improving the models if there is a need                                |        TBD        |   TBD    |
-| November 30^th^ to December 6^th^ | Refining the code for code review with comments                        |        TBD        |   TBD    |
-|                \-                 | Generate insights from the model output                                |        TBD        |   TBD    |
-|     December 7^th^ to 13^th^      | Review the generated models                                            |        TBD        |   TBD    |
+|     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |     Shashwat      | Bharath  |
+|                \-                 | Data cleaning and Data pre-processing based on EDA                     |      Bharath      | Pranshu  |
+|                \-                 | Question specific exploration and identify initial trends and patterns |       Joel        |  Vishal  |
+|     November 16^th^ to 22^nd^     | Model training for Q1                                                  |      Vishal       | Shashwat |
+|                \-                 | Model training for Q2                                                  |      Pranshu      |   Joel   |
+|     November 23^rd^ to 29^th^     | Continue Model training and testing for Q1 and Q2                      |      Vishal       | Pranshu  |
+|                \-                 | Improving the models if there is a need                                |       Joel        | Bharath  |
+| November 30^th^ to December 6^th^ | Refining the code for code review with comments                        |      Bharath      |  Vishal  |
+|                \-                 | Generate insights from the model output                                |     Shashwat      |   Joel   |
+|     December 7^th^ to 13^th^      | Review the generated models                                            |      Pranshu      | Shashwat |
 |                \-                 | Write-up and presentation for the project                              |     Everyone      | Everyone |
-
-: {.hover}
 
 ### Repo Organization
 
@@ -202,4 +198,10 @@ The following are the folders involved in the Project repository.
 
 -   **'.github/':** Folder for storing github templates and workflow.
 
-We will be creating few folders inside `images/` folder for storing question specific images and presentation related images which are generated through out the plot.
+We will be creating few folders inside `images/` folder for storing question specific images and presentation related images which are generated through out the plot. We will be creating `images/Q1`, `images/Q2` and `images/Presentation` for those respective files.
+
+::: callout-note
+## Note:
+
+These are the planned approaches, and we intend to explore and solve the problem statement which we came up with. Parts of our approach might change in the final implementation.
+:::
