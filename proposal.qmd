@@ -56,7 +56,7 @@ data <- data %>% select(-Timestamp)
 
 ```
 
-This is a dataset collected for analyzing the behavioral analysis of Amazon's consumers consists of a comprehensive collection of customer interactions,browsing patterns within the Amazon ecosystem. It includes a wide range of variables such as customer demographics, user interaction, and reviews. The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform. By analyzing this dataset, researchers and analysts can gain a deeper understanding of consumer behavior, identify trends, optimize marketing strategies, and improve the overall customer experience on Amazon. The Dataset contains `N=602` observations.
+This is a dataset collected from [kaggle](https://www.kaggle.com/datasets/swathiunnikrishnan/amazon-consumer-behaviour-dataset/data) for analyzing the behavioral analysis of Amazon's consumers consists of a comprehensive collection of customer interactions, browsing patterns within the Amazon ecosystem. It includes a wide range of variables such as customer demographics, user interaction, and reviews. The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform. By analyzing this dataset, researchers and analysts can gain a deeper understanding of consumer behavior, identify trends, optimize marketing strategies, and improve the overall customer experience on Amazon. The Dataset contains `N=602` observations.
 
 ## Examine data
 
@@ -148,17 +148,28 @@ Which demographic (on the basis of gender and age) is most likely to purchase a 
 
 Our analysis will commence with a precise exploratory data analysis (EDA) using R, where we'll focus on key variables such as `Purchase_Frequency`, `Product_Search_Method`, and `Customer_Reviews_Importance`, to unearth their potential impact on cart abandonment. During the data cleaning stage, we will ensure that columns like `age`, `Gender`, and `Browsing_Frequency` are correctly formatted and free of missing values. Subsequently, statistical techniques---such as logistic regression or decision trees---will be applied to assess the influence of factors like `Personalized_Recommendation_Frequency` and `Search_Result_Exploration` on cart abandonment behavior.
 
-For visualization, we will harness the capabilities of R's ggplot2 package to create comprehensive and interpretable graphics, such as correlation heat-maps and bar charts, showcasing the interplay between cart abandonment and various customer behavior metrics.. This meticulous approach is designed to provide us with robust insights, empowering us to enhance the shopping experience and curtail cart abandonment rates effectively.
+For visualization, we will harness the capabilities of R's ggplot2 package to create comprehensive and interpretable graphics, such as correlation heat-maps and bar charts, showcasing the interplay between cart abandonment and various customer behavior metrics. This meticulous approach is designed to provide us with robust insights, empowering us to enhance the shopping experience and curtail cart abandonment rates effectively.
 
 ### Approach for question 2
 
 We will further continue our analysis where we will be focusing majorly on the key features such as `age`, `Gender`, `Purchase_Categories` and `Cart_Completion_Frequency` to predict which product is of particular interest to a demography. Again, we will make sure the data is clean for the concerned features and address any missing or incorrect data.
 
-Post that we will identify important summary statistics for key variables such as `Purchase_Categories`.
+Post that we will identify important summary statistics for key variables such as `Purchase_Categories`. Once the data is clean, we will employ Statistical Analysis tools such as `Logistic Regression` or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender). For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
 
-Once the data is clean, we will employ Statistical Analysis tools such as `Logistic Regression` or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender)
+## Variables of focus for both questions
 
-For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
+| Variable                              | Description                                                                                |
+|-----------------------|------------------------------------------------------|
+| Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
+| Product_Search_Method                 | How does the user search for products on Amazon?                                           |
+| Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
+| age                                   | age                                                                                        |
+| Gender                                | gender                                                                                     |
+| Browsing_Frequency                    | How often does the user browse Amazon's website or app?                                    |
+| Purchase_Categories                   | What product categories does the user typically purchase on Amazon?                        |
+| Cart_Completion_Frequency             | How often do user complete the purchase after adding products to their cart?               |
+| Personalized_Recommendation_Frequency | How often do user receive personalized product recommendations from Amazon?                |
+| Search_Result_Exploration             | Does the user tend to explore multiple pages of search results or focus on the first page? |
 
 ## Organization
 
