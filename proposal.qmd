@@ -154,12 +154,12 @@ For visualization, we will harness the capabilities of R's ggplot2 package to cr
 
 We will further continue our analysis where we will be focusing majorly on the key features such as `age`, `Gender`, `Purchase_Categories` and `Cart_Completion_Frequency` to predict which product is of particular interest to a demography. Again, we will make sure the data is clean for the concerned features and address any missing or incorrect data.
 
-Post that we will identify important summary statistics for key variables such as `Purchase_Categories`. Once the data is clean, we will employ Statistical Analysis tools such as `Logistic Regression` or Classification to assess the likelihood of purchasing product categories based on demographic variables (age and gender). For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
+Post that we will identify important summary statistics for key variables such as `Purchase_Categories`. Once the data is clean, we will employ Statistical Analysis tools to assess the likelihood of purchasing product categories based on demographic variables (age and gender). For visualization, we will be using heat-maps and bar charts to illustrate the relationship between the target variables.
 
 ### Variables of focus for both questions
 
 | Variable                              | Description                                                                                |
-|-----------------------|------------------------------------------------------|
+|----------------------|--------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
