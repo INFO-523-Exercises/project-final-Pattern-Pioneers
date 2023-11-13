@@ -136,7 +136,7 @@ In our first question "**What are the factors influencing the customer's decisio
 
 ### Question 2
 
-Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
+For our second question "**Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?**" we attempt to determine the demographic which is most likely to purchase a particular product category on the basis of their age and gender which will help companies to tailor their marketing strategies so that their messages are able to reach the right group of customers, leading to cost optimization of their marketing budget. By identifying the right demographic to target amazon can gain a competitive advantage by attracting a larger share of the target audience. This will also lead to higher levels of customer satisfaction which will result in customer loyalty and recurring purchases.
 
 ## Analysis plan
 
