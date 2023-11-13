@@ -56,8 +56,6 @@ data <- read_csv("data/Amazon_Customer_Behavior_Survey.csv")
 # Removing unwanted column like "timestamp".
 
 data <- data %>% select(-Timestamp)
-
-
 ```
 
 This is a dataset collected from [kaggle](https://www.kaggle.com/datasets/swathiunnikrishnan/amazon-consumer-behaviour-dataset/data) for analyzing the behavioral analysis of Amazon's consumers consists of a comprehensive collection of customer interactions, browsing patterns within the Amazon ecosystem. It includes a wide range of variables such as customer demographics, user interaction, and reviews. The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform. By analyzing this dataset, researchers and analysts can gain a deeper understanding of consumer behavior, identify trends, optimize marketing strategies, and improve the overall customer experience on Amazon. The Dataset contains `N=602` observations.
