@@ -37,7 +37,7 @@ pacman::p_load(tidyverse,   # Data wrangling
                gtsummary)   # Summary for the tables
 ```
 
-## Motivation
+## Goal
 
 Our main motivation for selecting the dataset **Amazon consumer Behaviour Dataset** that we came across in Kaggle was to unveil some customer insights which can be used for enhancing the customer experience or the improving the business implementation after analyzing this dataset.
 
