@@ -37,6 +37,10 @@ pacman::p_load(tidyverse,   # Data wrangling
                gtsummary)   # Summary for the tables
 ```
 
+## Motivation
+
+Our main motivation for selecting the dataset **Amazon consumer Behaviour Dataset** that we came across in Kaggle was to unveil some customer insights which can be used for enhancing the customer experience or the improving the business implementation after analyzing this dataset.
+
 ## Dataset
 
 ```{r}
@@ -124,19 +128,11 @@ new_data |>
   gtsummary::tbl_summary()
 ```
 
-## Motivation
-
-Our main motivation for selecting the dataset **Amazon consumer Behaviour Dataset** that we came across in Kaggle was to unveil some customer insights which can be used for enhancing the customer experience or the improving the business implementation after analyzing this dataset.
-
-In our first question "**What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?**" we are attempting to understand the reasons behind the customer abandoning the purchase in their cart for increasing the **conversion rate(**the percentage of users who actually complete a purchase**)** for amazon. It will also help us in enhancing the customer experience by making the application or the website more user-friendly and intuitive so that the user is able to find the right product and proceed to complete his purchase in an effortless manner.
-
-For our second question "**Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?**" we attempt to determine the demographic which is most likely to purchase a particular product category on the basis of their age and gender which will help companies to tailor their marketing strategies so that their messages are able to reach the right group of customers, leading to cost optimization of their marketing budget. By identifying the right demographic to target amazon can gain a competitive advantage by attracting a larger share of the target audience. This will also lead to higher levels of customer satisfaction which will result in customer loyalty and recurring purchases.
-
 ## Questions
 
 ### Question 1
 
-What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
+In our first question "**What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?**" we are attempting to understand the reasons behind the customer abandoning the purchase in their cart for increasing the **conversion rate(**the percentage of users who actually complete a purchase**)** for amazon. It will also help us in enhancing the customer experience by making the application or the website more user-friendly and intuitive so that the user is able to find the right product and proceed to complete his purchase in an effortless manner.
 
 ### Question 2
 
@@ -159,7 +155,7 @@ Post that we will identify important summary statistics for key variables such a
 ### Variables of focus for both questions
 
 | Variable                              | Description                                                                                |
-|----------------------|--------------------------------------------------|
+|------------------------|------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
