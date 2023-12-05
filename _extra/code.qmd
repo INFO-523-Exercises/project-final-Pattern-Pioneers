@@ -1,5 +1,3 @@
-
-
 ```{r}
 #| label: load-pkgs
 #| message: false
@@ -10,17 +8,115 @@ library(lubridate)
 
 ```
 
-
 ## Dataset Setup
-```{r}
 
+```{r}
+### GETTING THE LIBRARIES
+if (!require(pacman))
+  install.packages(pacman)
+
+pacman::p_load(tidyverse,   # Data wrangling
+               dlookr,      # Exploratory Data Analysis
+               formattable, # Present neat table format
+               gt,          # Alternating formatting for the tables
+               gtsummary,
+               dplyr)   # Summary for the tables
 
 ```
 
+# Loading data
 
+```{r}
+# Using the original data
+# Loading the csv into a variable using read_csv
+
+data <- read_csv("../data/Amazon_Customer_Behavior_Survey.csv")
+
+# Removing unwanted column like "timestamp".
+
+data <- data %>% select(-Timestamp)
+
+```
 
 ## Plots
+
 ```{r}
 
+print(colnames(data))
+```
 
+```{r}
+new_df <- data %>% select(Purchase_Frequency,roduct_SeParch_Method,Customer_Reviews_Importance,Cart_Abandonment_Factors)
+```
+
+```{r}
+sort(unique(new_df$Customer_Reviews_Importance))
+```
+
+```{r}
+sort(unique(new_df$Product_Search_Method))
+```
+
+```{r}
+sort(unique(new_df$Purchase_Frequency))
+```
+
+```{r}
+library(nnet)
+
+new_df$Purchase_Frequency <- as.factor(new_df$Purchase_Frequency) 
+new_df$Purchase_Frequency <- as.integer(new_df$Purchase_Frequency) 
+unique(new_df$Purchase_Frequency)
+new_df$Product_Search_Method <- as.factor(new_df$Product_Search_Method)
+new_df$Product_Search_Method <- as.integer(new_df$Product_Search_Method)
+unique(new_df$Product_Search_Method)
+new_df$Cart_Abandonment_Factors <- as.factor(new_df$Cart_Abandonment_Factors)
+new_df$Cart_Abandonment_Factors <- as.integer(new_df$Cart_Abandonment_Factors)
+unique(new_df$Cart_Abandonment_Factors)
+
+new_df$Customer_Reviews_Importance <- as.factor(new_df$Customer_Reviews_Importance)
+new_df$Customer_Reviews_Importance <- as.integer(new_df$Customer_Reviews_Importance)
+unique(new_df$Customer_Reviews_Importance)
+
+
+new_df = na.omit(new_df)
+
+```
+
+```{r}
+set.seed(123) # For reproducibility
+train_index <- sample(1:nrow(new_df), 0.8 * nrow(new_df)) # 80% for training
+train_data <- new_df[train_index, ]
+test_data <- new_df[-train_index, ]
+
+ncol(train_data)
+```
+
+```{r}
+model <- nnet(Cart_Abandonment_Factors ~ Product_Search_Method, 
+              data =train_data, size = 100, maxit = 1000)
+```
+
+```{r}
+predictions <- predict(model, newdata = test_data)
+accuracy <- mean(predictions == test_data$Cart_Abandonment_Factors) * 100
+accuracy
+```
+
+```{r}
+correlation_matrix <- cor(new_df)
+
+# Display the correlation matrix
+print(correlation_matrix)
+```
+
+```{r}
+library(corrplot)
+
+# Visualize correlation matrix using corrplot
+corrplot(correlation_matrix, method = "circle")
+```
+
+```{r}
+write_csv(new_df,"sample.csv")
 ```
