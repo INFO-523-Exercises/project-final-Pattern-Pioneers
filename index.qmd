@@ -189,12 +189,14 @@ accuracy
 ```{r}
 #Exploratory Data Analysis
 
+data <- read_csv(here("data", "Amazon_Customer_Behavior_Survey.csv"))
+
 # Check data structure
-str(df)
+str(data)
 
 # First 6 rows of dataframe
 
-df |>
+data |>
   head() |>
   formattable()
 
@@ -204,25 +206,25 @@ df |>
 ## Diagnosing data
 
 ```{r}
-df |>
+data |>
   diagnose() |>
   formattable()
 ```
 
 ```{r}
 # Age distribution
-ggplot(df, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
+ggplot(data, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
   labs(title="Age Distribution", x="Age", y="Frequency")
 
 # Gender distribution
-ggplot(df, aes(x=Gender)) + geom_bar(fill="orange") +
+ggplot(data, aes(x=Gender)) + geom_bar(fill="orange") +
   labs(title="Gender Distribution", x="Gender", y="Count")
 
 ```
 
 ```{r}
 # Creating afe group based on age
-df$age_group <- cut(df$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
+data$age_group <- cut(data$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
                     labels=c('0-18', '19-25', '26-35', '36-45', '46-55', '56-65', '65+'))
 
 ```
@@ -230,7 +232,7 @@ df$age_group <- cut(df$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
 ```{r splitting purchase categories}
 # We are going to split the rows having multiple purchase categories into multiple rows with same data in other columns but split up with respect to purchasing categories.
 # Splitting 'Purchase_Categories'
-df_expanded <- df %>%
+df_expanded <- data %>%
   separate_rows(Purchase_Categories, sep=";") %>%
   rename(Purchase_Category = Purchase_Categories)
 
@@ -250,4 +252,41 @@ ggplot(df_expanded, aes(x=Purchase_Category, fill=Gender)) +
   geom_bar() +
   coord_flip() +
   labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count")
+```
+
+### Applying a logistical regression model 
+
+```{r}
+
+# Preparing the data for logistic regression
+df_expanded <- df_expanded |>
+    mutate(Purchase_Category = ifelse(is.na(Purchase_Category), 
+                                   NA, 
+                                   tolower(gsub(" ", "_", Purchase_Category))))
+
+unique_categories <- unique(df_expanded$Purchase_Category)
+models <- list()
+reports <- list()
+```
+
+```{r}
+for (category in unique_categories) {
+  # Binary variable for each category
+  df_expanded[[category]] <- ifelse(df_expanded$Purchase_Category == category, 1, 0)
+  
+  # Model
+  model_formula <- as.formula(paste(category, "~ age_group + Gender"))
+  model <- multinom(model_formula, data=df_expanded)
+  
+  # Store the model
+  models[[category]] <- model
+  
+  # Evaluation
+  predictions <- predict(model, df_expanded)
+  reports[[category]] <- confusionMatrix(data=factor(predictions, levels=c(0,1)), 
+                                         reference=factor(df_expanded[[category]], levels=c(0,1)))
+}
+
+# Displaying the report for an example category
+print(reports[[unique_categories[1]]])
 ```
