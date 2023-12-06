@@ -32,7 +32,8 @@ pacman::p_load(tidyverse,   # Data wrangling
                janitor,
                corrplot,
                dplyr,
-               caret)       # Summary for the tables
+               caret,
+               formattable)       # Summary for the tables
 ```
 
 ## Abstract
@@ -182,13 +183,26 @@ accuracy
 ## Question 2
 
 ```{r}
-#EDA
+#Exploratory Data Analysis
 
-# Check the structure of the data
+# Check data structure
 str(df)
 
 # First 6 rows of dataframe
-df |> head()
+
+df |>
+  head() |>
+  formattable()
+
+
+```
+
+## Diagnosing data
+
+```{r}
+df |>
+  diagnose() |>
+  formattable()
 ```
 
 ```{r}
