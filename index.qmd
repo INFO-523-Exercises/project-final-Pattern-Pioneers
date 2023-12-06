@@ -6,10 +6,176 @@ author:
     affiliations:
       - name: "School of Information, University of Arizona"
 description: ""
-format: html
+format:
+   html:
+    code-tools: true
+    code-overflow: wrap
+    embed-resources: true
 editor: visual
+execute:
+  warning: false
+  echo: false
 ---
+
+```{r install_packages, include=FALSE}
+### GETTING THE LIBRARIES
+if (!require(pacman))
+  install.packages(pacman)
+
+pacman::p_load(tidyverse,   # Data wrangling
+               dlookr,      # Exploratory Data Analysis
+               formattable, # Present neat table format
+               gt,          # Alternating formatting for the tables
+               gtsummary,
+               here,
+               nnet,
+               janitor,
+               corrplot,
+               dplyr)       # Summary for the tables
+```
 
 ## Abstract
 
-Add project abstract here.
+```{r read_data, include=FALSE}
+# Using the original data
+# Loading the csv into a variable using read_csv
+
+data <- read_csv(here("data", "Amazon_Customer_Behavior_Survey.csv"))
+
+# Removing unwanted column like "timestamp".
+data <- data %>% 
+  select(-Timestamp) %>%
+  clean_names()
+```
+
+## Question 1
+
+```{r new_df, include=FALSE}
+# creating a new dataframe by selecting only the columns of our focus
+
+new_df <-
+  data %>% select(
+    purchase_frequency,
+    product_search_method,
+    customer_reviews_importance,
+    cart_abandonment_factors
+  )
+```
+
+```{r get_outliers}
+# getting some idea on the dataset by visualizing the outliers
+
+new_df |>
+    plot_outlier()
+
+# Interpretation: There are not many outliers such that data transformation is needed for this data
+```
+
+```{r refactor_new_df, include=FALSE}
+# modifying the column data type to factor and then to integer
+new_df$purchase_frequency <- as.factor(new_df$purchase_frequency)
+new_df$purchase_frequency <- as.integer(new_df$purchase_frequency)
+
+unique(new_df$purchase_frequency)
+
+# modifying the column data type to factor and then to integer
+new_df$product_search_method <-
+  as.factor(new_df$product_search_method)
+new_df$product_search_method <-
+  as.integer(new_df$product_search_method)
+
+unique(new_df$product_search_method)
+
+# modifying the column data type to factor and then to integer
+new_df$cart_abandonment_factors <-
+  as.factor(new_df$cart_abandonment_factors)
+new_df$cart_abandonment_factors <-
+  as.integer(new_df$cart_abandonment_factors)
+
+unique(new_df$cart_abandonment_factors)
+
+# modifying the column data type to factor and then to integer
+new_df$customer_reviews_importance <-
+  as.factor(new_df$customer_reviews_importance)
+new_df$customer_reviews_importance <-
+  as.integer(new_df$customer_reviews_importance)
+
+unique(new_df$customer_reviews_importance)
+
+# removing missing values from the dataframe
+new_df = na.omit(new_df)
+```
+
+```{r correlation}
+# creating correlation matrix using cor()
+correlation_matrix <- cor(new_df)
+
+# Display the correlation matrix
+correlation_matrix
+```
+
+```{r corrplot}
+# Visualize correlation matrix using corrplot
+
+corrplot(correlation_matrix, method = "circle")
+```
+
+```{r bar_plot}
+# generating plot product_search_method vs cart_abandonment_factors
+
+data %>%
+  select(product_search_method,
+         cart_abandonment_factors) %>%
+  # removing missing values
+  na.omit() %>%
+  # using ggplot to generate the plot
+  ggplot(aes(y = cart_abandonment_factors, fill = product_search_method)) +
+  # using geom_bar() to generate 100% bar plot
+  geom_bar(position = "fill", width = 0.5, color = "black") +
+  # scaling x axis to have percentage
+  scale_x_continuous("Percentage in each category", 
+                     labels = scales::percent,
+                     expand = c(0, 0)) +
+  # using viridis color scale - colorblind friendly
+  scale_fill_viridis_d(option = 5, direction = -1) +
+  labs(y = NULL, title = "") +
+  theme_minimal(base_size = 20) # theme minimal
+```
+
+```{r traning_1, include=FALSE}
+set.seed(123) # For reproducibility
+
+# training the dataset by splitting the data to 80% training
+train_index <-
+  sample(1:nrow(new_df), 0.8 * nrow(new_df)) # 80% for training
+
+# getting train and test data
+train_data <- new_df[train_index,]
+test_data <- new_df[-train_index,]
+
+ncol(train_data)
+```
+
+```{r model}
+# calling the nnet model with Cart_Abandonment_Factors and Product_Search_Method being our focus
+
+model <- nnet(
+  cart_abandonment_factors ~ product_search_method,
+  data = train_data,
+  size = 100,
+  maxit = 1000
+)
+```
+
+```{r predictions}
+# generating predictions on the test data using the created model above
+predictions <- predict(model, newdata = test_data)
+
+# getting accuracy of our predictions
+accuracy <-
+  mean(predictions == test_data$cart_abandonment_factors) * 100
+
+accuracy
+```
+
+## Question 2

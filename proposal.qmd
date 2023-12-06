@@ -153,7 +153,7 @@ Post that we will identify important summary statistics for key variables such a
 ### Variables of focus for both questions
 
 | Variable                              | Description                                                                                |
-|------------------------|------------------------------------------------|
+|---------------------------------------|--------------------------------------------------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -170,7 +170,7 @@ Post that we will identify important summary statistics for key variables such a
 ### Plan of Attack
 
 |               Week                | Weekly Tasks                                                           | Persons in Charge |  Backup  |
-|:----------------:|-------------------|:----------------:|:----------------:|
+|:---------------------------------:|------------------------------------------------------------------------|:-----------------:|:--------:|
 |       until November 8^th^        | Explore and finalize the dataset and the problem statements            |     Everyone      | Everyone |
 |                \-                 | Complete the proposal and assign some high-level tasks                 |     Everyone      | Everyone |
 |     November 9^th^ to 15^th^      | Exploratory Data Analysis                                              |     Shashwat      | Bharath  |
