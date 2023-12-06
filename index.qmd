@@ -31,7 +31,8 @@ pacman::p_load(tidyverse,   # Data wrangling
                nnet,
                janitor,
                corrplot,
-               dplyr)       # Summary for the tables
+               dplyr,
+               caret)       # Summary for the tables
 ```
 
 ## Abstract
@@ -179,3 +180,31 @@ accuracy
 ```
 
 ## Question 2
+
+```{r}
+#EDA
+
+# Check the structure of the data
+str(df)
+
+# First 6 rows of dataframe
+df |> head()
+```
+
+```{r}
+# Age distribution
+ggplot(df, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
+  labs(title="Age Distribution", x="Age", y="Frequency")
+
+# Gender distribution
+ggplot(df, aes(x=Gender)) + geom_bar(fill="orange") +
+  labs(title="Gender Distribution", x="Gender", y="Count")
+
+```
+
+```{r}
+# Creating afe group based on age
+df$age_group <- cut(df$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
+                    labels=c('0-18', '19-25', '26-35', '36-45', '46-55', '56-65', '65+'))
+
+```
