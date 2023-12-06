@@ -186,11 +186,7 @@ accuracy
 
 ## Question 2
 
-```{r}
-#Exploratory Data Analysis
-
-data <- read_csv(here("data", "Amazon_Customer_Behavior_Survey.csv"))
-
+```{r check_data, include=FALSE}
 # Check data structure
 str(data)
 
@@ -205,77 +201,77 @@ data |>
 
 ## Diagnosing data
 
-```{r}
+```{r diagnose, include=FALSE}
 data |>
   diagnose() |>
   formattable()
 ```
 
-```{r}
+```{r plot_data, include=FALSE}
 # Age distribution
 ggplot(data, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
   labs(title="Age Distribution", x="Age", y="Frequency")
 
 # Gender distribution
-ggplot(data, aes(x=Gender)) + geom_bar(fill="orange") +
+ggplot(data, aes(x=gender)) + geom_bar(fill="orange") +
   labs(title="Gender Distribution", x="Gender", y="Count")
 
 ```
 
-```{r}
+```{r age_group_data, include=FALSE}
 # Creating afe group based on age
 data$age_group <- cut(data$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
                     labels=c('0-18', '19-25', '26-35', '36-45', '46-55', '56-65', '65+'))
 
 ```
 
-```{r splitting purchase categories}
+```{r splitting purchase categories, include=FALSE}
 # We are going to split the rows having multiple purchase categories into multiple rows with same data in other columns but split up with respect to purchasing categories.
 # Splitting 'Purchase_Categories'
 df_expanded <- data %>%
-  separate_rows(Purchase_Categories, sep=";") %>%
-  rename(Purchase_Category = Purchase_Categories)
+  separate_rows(purchase_categories, sep=";") %>%
+  rename(purchase_category = purchase_categories)
 
 ```
 
 ## Data Visualization
 
-```{r plotting graphs for purchase category across age group and gender groups}
+```{r age_gender, include=FALSE}
 # Plotting a stacked barplot for representing purchase categories across different age groups
-ggplot(df_expanded, aes(x=Purchase_Category, fill=age_group)) +
+ggplot(df_expanded, aes(x=purchase_category, fill=age_group)) +
   geom_bar() +
   coord_flip() +
   labs(title="Purchase Categories Across Age Groups", x="Purchase Category", y="Count")
 
 # Plotting a stacked barplot for representing purchase categories across different genders
-ggplot(df_expanded, aes(x=Purchase_Category, fill=Gender)) +
+ggplot(df_expanded, aes(x=purchase_category, fill=gender)) +
   geom_bar() +
   coord_flip() +
   labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count")
 ```
 
-### Applying a logistical regression model 
+### Applying a logistical regression model
 
-```{r}
+```{r log_regr, include=FALSE}
 
 # Preparing the data for logistic regression
 df_expanded <- df_expanded |>
-    mutate(Purchase_Category = ifelse(is.na(Purchase_Category), 
+    mutate(purchase_category = ifelse(is.na(purchase_category), 
                                    NA, 
-                                   tolower(gsub(" ", "_", Purchase_Category))))
+                                   tolower(gsub(" ", "_", purchase_category))))
 
-unique_categories <- unique(df_expanded$Purchase_Category)
+unique_categories <- unique(df_expanded$purchase_category)
 models <- list()
 reports <- list()
 ```
 
-```{r}
+```{r predictions, include=FALSE}
 for (category in unique_categories) {
   # Binary variable for each category
-  df_expanded[[category]] <- ifelse(df_expanded$Purchase_Category == category, 1, 0)
+  df_expanded[[category]] <- ifelse(df_expanded$purchase_category == category, 1, 0)
   
   # Model
-  model_formula <- as.formula(paste(category, "~ age_group + Gender"))
+  model_formula <- as.formula(paste(category, "~ age_group + gender"))
   model <- multinom(model_formula, data=df_expanded)
   
   # Store the model
