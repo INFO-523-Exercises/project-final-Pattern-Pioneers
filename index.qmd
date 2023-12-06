@@ -1,7 +1,3 @@
-```{r}
-
-```
-
 ---
 title: "Consumer Behaviour Analysis"
 subtitle: "INFO 523 - Project Final"
@@ -265,7 +261,7 @@ models <- list()
 reports <- list()
 ```
 
-```{r predictions, include=FALSE}
+```{r predictions_2, include=FALSE}
 for (category in unique_categories) {
   # Binary variable for each category
   df_expanded[[category]] <- ifelse(df_expanded$purchase_category == category, 1, 0)
