@@ -236,4 +236,18 @@ df_expanded <- df %>%
 
 ```
 
-## 
+## Data Visualization
+
+```{r plotting graphs for purchase category across age group and gender groups}
+# Plottting a stacked barplot for representing purchase categories across different age groups
+ggplot(df_expanded, aes(x=Purchase_Category, fill=age_group)) +
+  geom_bar() +
+  coord_flip() +
+  labs(title="Purchase Categories Across Age Groups", x="Purchase Category", y="Count")
+
+# Plottting a stacked barplot for representing purchase categories across different genders
+ggplot(df_expanded, aes(x=Purchase_Category, fill=Gender)) +
+  geom_bar() +
+  coord_flip() +
+  labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count")
+```
