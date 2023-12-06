@@ -1,3 +1,7 @@
+```{r}
+
+```
+
 ---
 title: "Consumer Behaviour Analysis"
 subtitle: "INFO 523 - Project Final"
@@ -222,3 +226,14 @@ df$age_group <- cut(df$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
                     labels=c('0-18', '19-25', '26-35', '36-45', '46-55', '56-65', '65+'))
 
 ```
+
+```{r splitting purchase categories}
+# We are going to split the rows having multiple purchase categories into multiple rows with same data in other columns but split up with respect to purchasing categories.
+# Splitting 'Purchase_Categories'
+df_expanded <- df %>%
+  separate_rows(Purchase_Categories, sep=";") %>%
+  rename(Purchase_Category = Purchase_Categories)
+
+```
+
+## 
