@@ -16,10 +16,12 @@ website:
         href: presentation.qmd
       - text: About
         href: about.qmd
+    logo: images\pp_logo.png
+  favicon:  images\pp_logo.png
 
 format:
   html:
-    theme: default
+    theme: yeti
     toc: true
 
 execute:

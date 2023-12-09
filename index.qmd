@@ -50,7 +50,17 @@ data <- data %>%
   clean_names()
 ```
 
+## **Introduction**
+
 ## Question 1
+
+### **Introduction**
+
+### **Approach**
+
+### **Analysis**
+
+### **Discussion**
 
 ```{r new_df, include=FALSE}
 # creating a new dataframe by selecting only the columns of our focus
@@ -182,6 +192,14 @@ accuracy
 
 ## Question 2
 
+### **Introduction**
+
+### **Approach**
+
+### **Analysis**
+
+### **Discussion**
+
 ```{r check_data, include=FALSE}
 # Check data structure
 str(data)
@@ -282,3 +300,5 @@ for (category in unique_categories) {
 # Displaying the report for an example category
 print(reports[[unique_categories[1]]])
 ```
+
+## **References**
