@@ -18,7 +18,7 @@ execute:
 ---
 
 ```{r install_packages, include=FALSE}
-### GETTING THE LIBRARIES
+### Loading the required libraries
 if (!require(pacman))
   install.packages(pacman)
 
