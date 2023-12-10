@@ -141,7 +141,7 @@ data %>%
   # removing missing values
   na.omit() %>%
   # using ggplot to generate the plot
-  ggplot(aes(y = cart_abandonment_factors, fill = product_search_method)) +
+ggplot(aes(y = cart_abandonment_factors, fill = product_search_method)) +
   # using geom_bar() to generate 100% bar plot
   geom_bar(position = "fill", width = 0.5, color = "black") +
   # scaling x axis to have percentage
