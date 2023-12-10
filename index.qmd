@@ -38,6 +38,8 @@ pacman::p_load(tidyverse,   # Data wrangling
 
 ## Abstract
 
+This project aims to conduct a comprehensive analysis of consumer behavior using the Amazon Consumer Behavior Dataset obtained from Kaggle. The dataset comprises diverse customer interactions, browsing patterns, and reviews within the Amazon ecosystem. Our primary goal is to uncover valuable customer insights that can be leveraged to enhance the customer experience and optimize business strategies.
+
 ```{r read_data, include=FALSE}
 # Using the original data
 # Loading the csv into a variable using read_csv
