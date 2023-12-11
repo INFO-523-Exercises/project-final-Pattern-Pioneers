@@ -256,6 +256,16 @@ accuracy <-
 accuracy
 ```
 
+Despite the diligent efforts we achieved accuracy of 43 percent indicates that the model's performance may be limited by various factors. Potential reasons for the performance could include but are not limited to:
+
+Limited Data: The dataset is small or insufficiently representative to capture the complexity of the problem.
+
+Model Complexity: The chosen neural network architecture may not be suitable for the problem at hand. Experimentation with different architectures could be beneficial.
+
+Feature Engineering: Feature selection or engineering techniques might need further exploration to improve the model's ability to learn relevant patterns.
+
+Moving forward, efforts will be focused on refining the model architecture, exploring different neural network configurations, experimenting with additional features, and potentially acquiring more data to improve the model's accuracy. This result, while not meeting the desired performance threshold, serves as a valuable starting point for further iterations and enhancements to achieve better predictive capabilities.
+
 ```{r dtree, message=FALSE}
 # Using a decision tree classifier
 # Convert factors to categorical
