@@ -1,6 +1,16 @@
 # project-final
 
-Final project repo for INFO 523 - Fall 2023.
+This project was developed by **Pattern Pioneers** For [INFO 523 - Data Mining and Discovery](https://datamineaz.org/) at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.
+
+-   Team member 1: Vishal Bhashyaam, First-year graduate student in Data Science at University of Arizona., github: @vishalbhashyaam.
+
+-   Team member 2: Joel Jojo, First-year graduate student in Data Science at University of Arizona., github: @joeljojo1310.
+
+-   Team member 3: Pranshu Singh Rawat, First-year graduate student in Data Science at University of Arizona., github: @pranshusinghrawat.
+
+-   Team member 4: Shashwat Singh, First-year graduate student in Data Science at University of Arizona., github: @shashwatsinghds.
+
+-   Team member 5: Bharath Velamala, First-year graduate student in Data Science at University of Arizona., github: @bharath03-a
 
 #### Disclosure:
 Derived from the original data viz course by Mine Çetinkaya-Rundel @ Duke University

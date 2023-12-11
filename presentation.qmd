@@ -87,7 +87,7 @@ data <- data %>%
 ## Our Dataset {.smaller}
 
 | Variable                              | Description                                                                                |
-|-------------------------|-----------------------------------------------|
+|-------------------------|----------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -468,6 +468,7 @@ print(reports[[unique_categories[1]]])
 ::: incremental
 -   Insufficient amount of data to conduct a full fledged analysis on cart abandonment factors.
 -   The dataset contained time value for only a couple of weeks.
+-   Finalizing the model which correctly analyzes the data.
 -   Class Imbalance issue while modeling using logistic regression.
 -   Some models we tried are over fitting the data like random forest.
 :::
