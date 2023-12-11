@@ -146,7 +146,7 @@ What are the factors influencing the customer's decision to abandon a purchase i
 
 -   We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment.
 
--   **Visualization**- For visualisation we utilize the ggplot2 package for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+-   **Visualization**- For visualisation we utilize the ggplot2 package for creating comprehensive graphics, including correlation maps.
 :::
 
 ## Pre Processing {.smaller}
