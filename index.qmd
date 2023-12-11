@@ -390,7 +390,7 @@ models <- list()
 reports <- list()
 ```
 
-```{r predictions_2, include=FALSE}
+```{r predictions_2}
 for (category in unique_categories) {
   # Binary variable for each category
   df_expanded[[category]] <- ifelse(df_expanded$purchase_category == category, 1, 0)

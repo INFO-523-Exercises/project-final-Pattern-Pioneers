@@ -184,7 +184,9 @@ correlation_matrix
 ```{r corrplot}
 # Visualize correlation matrix using corrplot
 
-corrplot(correlation_matrix, method = "circle", type = "upper")
+
+corrplot(correlation_matrix, method = "circle")
+
 ```
 
 ## Modeling
@@ -203,9 +205,12 @@ test_data <- new_df[-train_index,]
 ncol(train_data)
 ```
 
+
 ```{r model, message=FALSE, output=FALSE, echo=TRUE}
 #| code-fold: true
 #| code-summary: "Model for Question 1"
+
+
 
 # calling the nnet model with Cart_Abandonment_Factors and Product_Search_Method being our focus
 
@@ -215,6 +220,10 @@ model <- nnet(
   size = 100,
   maxit = 1000
 )
+
+```
+
+```{r predictions}
 
 # generating predictions on the test data using the created model above
 predictions <- predict(model, newdata = test_data)
@@ -304,9 +313,12 @@ reports <- list()
 
 ## Modeling
 
+
 ```{r predictions_2, message=FALSE, output=FALSE, echo=TRUE}
 #| code-fold: true
 #| code-summary: "Model for Question 2"
+
+
 
 for (category in unique_categories) {
   # Binary variable for each category
@@ -326,12 +338,15 @@ for (category in unique_categories) {
 }
 ```
 
+
 ```{r results, include=FALSE}
+
 # Displaying the report for an example category
 print(reports[[unique_categories[1]]])
 ```
 
 ## Challenges faced {auto-animate="true"}
+
 
 -   Insufficient amount of data to conduct a full fledged analysis on cart abandonment factors.
 -   The dataset contained time value for only a couple of weeks.
@@ -340,3 +355,10 @@ print(reports[[unique_categories[1]]])
 
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
+
+
+
+## Outcome {.smaller auto-animate="true"}
+
+-   Exploring various Data Mining Techniques
+
