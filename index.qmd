@@ -30,13 +30,13 @@ pacman::p_load(tidyverse,   # Data wrangling
                here,
                nnet,
                janitor,
+               cluster,
                corrplot,
                dplyr,
                caret,
                formattable,
                rpart,
-               rpart.plot
-)       # Summary for the tables
+               rpart.plot)
 ```
 
 ## Abstract
@@ -63,7 +63,7 @@ The first question addresses the factors influencing a customer's decision to ab
 
 ### Approach
 
-Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like logistic regression to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
 
 ```{r get_cols, include=FALSE}
 colnames(data)
@@ -179,7 +179,7 @@ unique(new_df$customer_reviews_importance)
 new_df = na.omit(new_df)
 ```
 
-```{r correlation}
+```{r correlation, include=FALSE}
 # creating correlation matrix using cor()
 correlation_matrix <- cor(new_df)
 
@@ -190,7 +190,7 @@ correlation_matrix
 ```{r corrplot}
 # Visualize correlation matrix using corrplot
 
-corrplot(correlation_matrix, method = "circle", type = "upper")
+corrplot(correlation_matrix, method = 'color')
 ```
 
 ```{r bar_plot, include=FALSE}
@@ -230,7 +230,7 @@ test_data <- new_df[-train_index,]
 ncol(train_data)
 ```
 
-```{r model}
+```{r model, include=FALSE}
 # calling the nnet model with Cart_Abandonment_Factors and Product_Search_Method being our focus
 
 model <- nnet(
@@ -252,7 +252,7 @@ accuracy <-
 accuracy
 ```
 
-```{r}
+```{r dtree, message=FALSE}
 # Using a decision tree classifier
 # Convert factors to categorical
 data$cart_abandonment_factors <- as.factor(data$cart_abandonment_factors)
@@ -275,7 +275,6 @@ accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
 
 # Visualize the tree
 rpart.plot(tree_model)
-
 ```
 
 ### Discussion

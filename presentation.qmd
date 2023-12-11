@@ -37,7 +37,9 @@ pacman::p_load(tidyverse,   # Data wrangling
                corrplot,
                dplyr,
                caret,
-               formattable)       # Summary for the tables
+               formattable,
+               rpart,
+               rpart.plot)       # Summary for the tables
 ```
 
 ```{r read_data, include=FALSE}
@@ -183,13 +185,12 @@ correlation_matrix
 
 ```{r corrplot}
 # Visualize correlation matrix using corrplot
-
-
 corrplot(correlation_matrix, method = "circle")
 
+corrplot(correlation_matrix, method = "color")
 ```
 
-## Modeling
+## Modeling {auto-animate="true"}
 
 ```{r traning_1, include=FALSE}
 set.seed(123) # For reproducibility
@@ -204,7 +205,6 @@ test_data <- new_df[-train_index,]
 
 ncol(train_data)
 ```
-
 
 ```{r model, message=FALSE, output=FALSE, echo=TRUE}
 #| code-fold: true
@@ -233,6 +233,33 @@ accuracy <-
   mean(predictions == test_data$cart_abandonment_factors) * 100
 
 accuracy
+```
+
+## Modeling {auto-animate="true"}
+
+```{r dtree, message=FALSE}
+# Using a decision tree classifier
+# Convert factors to categorical
+data$cart_abandonment_factors <- as.factor(data$cart_abandonment_factors)
+data$product_search_method <- as.factor(data$product_search_method)
+
+# Splitting the data (example using 70%-30% split)
+set.seed(123)  # for reproducibility
+splitIndex <- createDataPartition(data$cart_abandonment_factors, p = 0.70, list = FALSE)
+train <- data[splitIndex, ]
+test <- data[-splitIndex, ]
+
+# Train the model
+tree_model <- rpart(cart_abandonment_factors ~ product_search_method, data = train, method = "class")
+
+# Evaluate the model (using test set)
+predictions <- predict(tree_model, test, type = "class")
+
+# Model accuracy
+accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
+
+# Visualize the tree
+rpart.plot(tree_model)
 ```
 
 ## Question 2 {.smaller}
@@ -313,7 +340,6 @@ reports <- list()
 
 ## Modeling
 
-
 ```{r predictions_2, message=FALSE, output=FALSE, echo=TRUE}
 #| code-fold: true
 #| code-summary: "Model for Question 2"
@@ -338,7 +364,6 @@ for (category in unique_categories) {
 }
 ```
 
-
 ```{r results, include=FALSE}
 
 # Displaying the report for an example category
@@ -346,7 +371,6 @@ print(reports[[unique_categories[1]]])
 ```
 
 ## Challenges faced {auto-animate="true"}
-
 
 -   Insufficient amount of data to conduct a full fledged analysis on cart abandonment factors.
 -   The dataset contained time value for only a couple of weeks.
@@ -356,9 +380,6 @@ print(reports[[unique_categories[1]]])
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
 
-
-
 ## Outcome {.smaller auto-animate="true"}
 
 -   Exploring various Data Mining Techniques
-
