@@ -291,7 +291,7 @@ accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
 rpart.plot(tree_model)
 ```
 
-### Discussion
+### 
 
 ## Question 2: Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
 
