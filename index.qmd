@@ -425,8 +425,6 @@ for (category in unique_categories) {
 print(reports[[unique_categories[1]]])
 ```
 
-### Discussion
+## Discussion
 
 Companies need to know who is most likely to buy their product so they can advertise to them effectively. By understanding the age and gender of their customers, companies can save money by focusing their marketing on the right people. This can help them beat their competition by getting more of the people they want to buy their product. This will also enhance the user experience of the customers which will lead to higher levels of customer satisfaction which will result in cost optimization of the companies marketing budget, customer loyalty and recurring purchases.
-
-## References
