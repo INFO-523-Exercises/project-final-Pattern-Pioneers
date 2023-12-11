@@ -87,7 +87,7 @@ data <- data %>%
 ## Our Dataset {.smaller}
 
 | Variable                              | Description                                                                                |
-|-------------------------|------------------------------------------------|
+|-------------------------|-----------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -151,8 +151,7 @@ What are the factors influencing the customer's decision to abandon a purchase i
 
 ## Pre Processing {.smaller}
 
-- Upon examining the data, we observed that a single purchase, represented by a row, was associated with multiple purchase categories.
-
+-   Upon examining the data, we observed that a single purchase, represented by a row, was associated with multiple purchase categories.
 
 ```{r, warning=FALSE,echo=FALSE}
 data|>head()|>formattable()
@@ -160,7 +159,7 @@ data|>head()|>formattable()
 
 ## Pre Processing {.smaller}
 
-- To address this issue and ensure data consistency, we chose to split the categories into separate rows.
+-   To address this issue and ensure data consistency, we chose to split the categories into separate rows.
 
 ```{r,warning=FALSE,echo=FALSE,eval=TRUE}
 df_expand <- data %>%
@@ -193,8 +192,6 @@ ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
         legend.position = "none") +
   labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
 ```
-
-
 
 ```{r new_df, include=FALSE}
 # creating a new dataframe by selecting only the columns of our focus
@@ -251,16 +248,15 @@ correlation_matrix <- cor(new_df)
 correlation_matrix
 ```
 
-
-
 ## Models Used
+
 ::: incremental
-- Neural Networks
-- Decision Tree
+-   Neural Networks
+-   Decision Tree
 :::
 
-
 ## Correlation Matrix for Consumer Behaviour
+
 ```{r corrplot}
 # Visualize correlation matrix using correlation plot
 
@@ -283,6 +279,8 @@ test_data <- new_df[-train_index,]
 
 ncol(train_data)
 ```
+
+![](images/nn_arch.png){fig-align="center"}
 
 ```{r model, message=FALSE, output=FALSE, echo=TRUE}
 #| code-fold: true
@@ -338,7 +336,8 @@ accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
 # Visualize the tree
 rpart.plot(tree_model)
 ```
-- **Key Takeaway-** The most important factor for people abandoning there carts was that "they found a better price elsewhere"
+
+-   **Key Takeaway-** The most important factor for people abandoning there carts was that "they found a better price elsewhere"
 
 ## Question 2 {.smaller}
 
@@ -476,5 +475,5 @@ print(reports[[unique_categories[1]]])
 ::: incremental
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
-- We identified the key factors which decides on the car abandonment.
+-   We identified the key factors which decides on the car abandonment.
 :::
