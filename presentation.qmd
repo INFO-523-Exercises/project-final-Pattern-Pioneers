@@ -42,6 +42,23 @@ pacman::p_load(tidyverse,   # Data wrangling
                rpart.plot)       # Summary for the tables
 ```
 
+```{r theme}
+# setting theme for ggplot2
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 14, base_family = "sans"))
+
+# setting width of code output
+options(width = 65)
+
+# setting figure parameters for knitr
+knitr::opts_chunk$set(
+  fig.width = 8,        # 8" width
+  fig.asp = 0.618,      # the golden ratio
+  fig.retina = 1,       # dpi multiplier for displaying HTML output on retina
+  fig.align = "center", # center align figures
+  dpi = 140             # higher dpi, sharper image
+)
+```
+
 ```{r read_data, include=FALSE}
 
 # Using the original data
@@ -61,17 +78,14 @@ data <- data %>%
 
 -   It has a comprehensive collection of customer interactions, browsing patterns within the Amazon ecosystem.
 
--   It includes a wide range of variables such as customer demographics, user interaction, and reviews. 
+-   It includes a wide range of variables such as customer demographics, user interaction, and reviews.
 
--  The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform
-
-
+-   The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform
 
 ## Our Dataset {.smaller}
 
-
 | Variable                              | Description                                                                                |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -82,8 +96,6 @@ data <- data %>%
 | Cart_Completion_Frequency             | How often do user complete the purchase after adding products to their cart?               |
 | Personalized_Recommendation_Frequency | How often do user receive personalized product recommendations from Amazon?                |
 | Search_Result_Exploration             | Does the user tend to explore multiple pages of search results or focus on the first page? |
-
-
 
 ## EDA Results- Top Improvement Areas {auto-animate="true"}
 
@@ -121,18 +133,15 @@ ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
 
 ```
 
-
-
 ## Question 1 {.smaller}
 
 What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
 
-
-
 ## Approach For Question 1 {.smaller}
 
-Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency.
 
+We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
 
 ## EDA Results - Age Distribution {auto-animate="true"}
 
@@ -222,7 +231,7 @@ correlation_matrix
 corrplot(correlation_matrix, method = "color")
 ```
 
-## Modeling {auto-animate="true"}
+## Modeling - NNET {auto-animate="true"}
 
 ```{r traning_1, include=FALSE}
 set.seed(123) # For reproducibility
@@ -266,7 +275,7 @@ accuracy <-
 
 ```
 
-## Modeling {auto-animate="true"}
+## Modeling - Decision Tree {auto-animate="true"}
 
 ```{r dtree, message=FALSE}
 # Using a decision tree classifier
@@ -298,7 +307,6 @@ rpart.plot(tree_model)
 Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
 
 ## Approach For Question 2 {.smaller}
-
 
 The approach that we took to solve determine which demographic is most likely to purchase a particular product category is as follows:
 
@@ -423,7 +431,3 @@ print(reports[[unique_categories[1]]])
 
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
-
-## Outcome {.smaller auto-animate="true"}
-
--   Exploring various Data Mining Techniques
