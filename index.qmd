@@ -254,18 +254,16 @@ accuracy
 ## Question 2: Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
 
 ### Approach
-The approach that we took to solve determine which demographic is most likely to purchase a particular product category is as follows:
-1. Data Cleaning: We checked the data set for any incosistencies like missing values or incorrect data. Then we tried to handle the outliers if they needed to be removed. 
-2. Summary statistics: After data cleaning we performed the summary statistics for important columns like purchase category, age group, gender which helped us understand the charecteristics and the distribution of data.
-3. Visualization: After a few steps of data transformation which included splitting the rows having multiple purchase categories into multiple rows with same data in other columns we performed some visualizations using ggplot to represent the data with the bar plots which helped us to figure out some trends and patterns of our data.
-4. Modelling :In the final part we performed statistical modelling to assess the likelihood of purchasing different product categories based on demographic variables like age and gender. We achieved this goal by using logistic regression models to predict the probability of a particular demographic to purchase each category.
+
+The approach that we took to solve determine which demographic is most likely to purchase a particular product category is as follows: 1. Data Cleaning: We checked the data set for any inconsistencies like missing values or incorrect data. Then we tried to handle the outliers if they needed to be removed. 2. Summary statistics: After data cleaning we performed the summary statistics for important columns like purchase category, age group, gender which helped us understand the charecteristics and the distribution of data. 3. Visualization: After a few steps of data transformation which included splitting the rows having multiple purchase categories into multiple rows with same data in other columns we performed some visualizations using ggplot to represent the data with the bar plots which helped us to figure out some trends and patterns of our data. 4. Modelling :In the final part we performed statistical modelling to assess the likelihood of purchasing different product categories based on demographic variables like age and gender. We achieved this goal by using logistic regression models to predict the probability of a particular demographic to purchase each category.
 
 ### Analysis
+
 The analysis of the relationship between age, gender and different purchase categories produces a lot of benefits for companies. It provides a deeper understanding of the preferences and behaviors of the customer, which allows the companies to make informed decisions on their product developmment, pricing and positioning. It also guides the companies in developing a targeted marketing campaign to reach a specific demographic. By applying the logistic regression we achieved an accuracy of 72.6% to predict the product category a particular demographic is likely to be interested in buying.
 
 ### Discussion
-Companies need to know who is most likely to buy their product so they can advertise to them effectively. By understanding the age and gender of their customers, companies can save money by focusing their marketing on the right people. This can help them beat their competition by getting more of the people they want to buy their product. This will also enhance the user experiance of the customers which will lead to higher levels of customer satisfaction which will result in cost optimization of the compaies marketing budget, customer loyalty and recurring purchases.
 
+Companies need to know who is most likely to buy their product so they can advertise to them effectively. By understanding the age and gender of their customers, companies can save money by focusing their marketing on the right people. This can help them beat their competition by getting more of the people they want to buy their product. This will also enhance the user experiance of the customers which will lead to higher levels of customer satisfaction which will result in cost optimization of the compaies marketing budget, customer loyalty and recurring purchases.
 
 ```{r check_data, include=FALSE}
 # Check data structure
