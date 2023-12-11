@@ -59,6 +59,63 @@ data <- data %>%
 ### **Approach**
 
 Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like logistic regression to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+```{r get_cols}
+colnames(data)
+```
+
+```{r eda_1}
+
+# Calculate the counts of each category
+improvement_counts <- data %>%
+  group_by(improvement_areas) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count)) %>%
+  ungroup()
+
+# Get the top 4 categories
+top_improvement_areas <- head(improvement_counts, 4)$improvement_areas
+
+# Create a new column 'grouped_improvement_areas' where categories outside the top 4 are labeled 'Others'
+data <- data %>%
+  mutate(grouped_improvement_areas = ifelse(improvement_areas %in% top_improvement_areas, 
+                                            improvement_areas, 
+                                            'Others'))
+
+# Reorder the factor levels to ensure "Others" is at the end
+data$grouped_improvement_areas <- factor(data$grouped_improvement_areas,
+                                         levels = c(top_improvement_areas, "Others"))
+
+# Plot with top 4 categories and 'Others' at the end
+ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
+  geom_bar(color="black") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(title = "Distribution of Top 4 Improvement Areas and Others", 
+       x = "Improvement Areas", 
+       y = "Count") +
+  scale_fill_brewer(palette="Set3")  # Using a ColorBrewer palette for fill colors
+
+```
+
+```{r eda_2}
+
+
+# Distribution of Age Among Respondents with a color
+ggplot(data, aes(x=age)) +
+  geom_histogram(binwidth = 1, fill="skyblue", color="black") +  # Setting fill and outline color for the bars
+  theme_minimal() +
+  labs(title = "Distribution of Age Among Respondents", x = "Age", y = "Count")
+
+# Distribution of Purchase Frequency with colors
+ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
+  geom_bar() +
+  scale_fill_brewer(palette="Set3") +  # Using a ColorBrewer palette for fill colors
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
+
+```
+
 
 ### **Discussion**
 
