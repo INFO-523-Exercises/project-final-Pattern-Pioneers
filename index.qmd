@@ -57,6 +57,8 @@ data <- data %>%
 
 ## Introduction
 
+In the fast-paced world of online shopping, understanding what customers want is crucial for success. The Amazon Consumer Behavior Dataset is like a goldmine of information about how people shop online. It's not just numbers; it tells a story about how and why people make choices when shopping on the internet. It goes beyond just purchases, giving us a complete picture of how customers interact and move through their online shopping experience. This analysis focuses on two main things: figuring out why some people leave their shopping carts without buying anything and understanding which groups of people prefer different types of products. The goal is to provide useful information to businesses so they can make smart decisions in the complex world of online commerce.
+
 ## Question 1: What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
 
 The first question addresses the factors influencing a customer's decision to abandon a purchase in their cart on Amazon. The analysis commences with Exploratory Data Analysis (EDA) in R, focusing on key variables such as Purchase Frequency, Product Search Method, and Customer Reviews Importance.
@@ -120,8 +122,6 @@ ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
   labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
 
 ```
-
-### Analysis
 
 ```{r new_df, include=FALSE}
 # creating a new dataframe by selecting only the columns of our focus
@@ -193,7 +193,7 @@ correlation_matrix
 corrplot(correlation_matrix, method = 'color')
 ```
 
-```{r bar_plot, include=FALSE}
+```{r bar_plot}
 # generating plot product_search_method vs cart_abandonment_factors
 
 data %>%
@@ -211,10 +211,14 @@ ggplot(aes(y = cart_abandonment_factors, fill = product_search_method)) +
                      labels = scales::percent,
                      expand = c(0, 0)) +
   # using viridis color scale - colorblind friendly
-  scale_fill_viridis_d(option = 5, direction = -1) +
+  scale_fill_brewer(palette="Set3") +
   labs(y = NULL, title = "") +
   theme_minimal(base_size = 20) # theme minimal
 ```
+
+### Analysis
+
+Our objective is to investigate and pinpoint potential reasons for cart abandonment using the data at hand. Initially, we examined outliers and conducted a preliminary analysis to extract insights from various feature columns. Our exploration covered `improvement areas`, `purchase frequency`, and the `age` distribution of the dataset. Among the available features, we selected `purchase frequency`, `product search method`, `customer reviews importance`, and `cart abandonment factors` to explore their correlations and identify patterns related to cart abandonment. Analyzing the correlation plot, we observed that `product search method` exhibits a stronger correlation with cart abandonment factors compared to other features. Subsequently, we utilized this feature to uncover insights using methods such as `nnet` and `decision tree`.
 
 ```{r traning_1, include=FALSE}
 set.seed(123) # For reproducibility
