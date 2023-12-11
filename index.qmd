@@ -67,7 +67,6 @@ colnames(data)
 ```
 
 ```{r eda_1}
-
 # Calculate the counts of each category
 improvement_counts <- data %>%
   group_by(improvement_areas) %>%
@@ -91,8 +90,9 @@ data$grouped_improvement_areas <- factor(data$grouped_improvement_areas,
 # Plot with top 4 categories and 'Others' at the end
 ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
   geom_bar(color="black") +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  theme_minimal(base_size = 16) +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.position = "none") +
   labs(title = "Distribution of Top 4 Improvement Areas and Others", 
        x = "Improvement Areas", 
        y = "Count") +
@@ -101,20 +101,19 @@ ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
 ```
 
 ```{r eda_2}
-
-
 # Distribution of Age Among Respondents with a color
 ggplot(data, aes(x=age)) +
   geom_histogram(binwidth = 1, fill="skyblue", color="black") +  # Setting fill and outline color for the bars
-  theme_minimal() +
+  theme_minimal(base_size = 16) +
   labs(title = "Distribution of Age Among Respondents", x = "Age", y = "Count")
 
 # Distribution of Purchase Frequency with colors
 ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
-  geom_bar() +
+  geom_bar(color="black") +
   scale_fill_brewer(palette="Set3") +  # Using a ColorBrewer palette for fill colors
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 30, hjust = 1)) +
+  theme_minimal(base_size = 16) +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.position = "none") +
   labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
 
 ```
@@ -135,7 +134,7 @@ new_df <-
   )
 ```
 
-```{r get_outliers}
+```{r get_outliers, include=FALSE}
 # getting some idea on the dataset by visualizing the outliers
 
 new_df |>
@@ -193,7 +192,7 @@ correlation_matrix
 corrplot(correlation_matrix, method = "circle")
 ```
 
-```{r bar_plot}
+```{r bar_plot, include=FALSE}
 # generating plot product_search_method vs cart_abandonment_factors
 
 data %>%
@@ -205,6 +204,7 @@ data %>%
 ggplot(aes(y = cart_abandonment_factors, fill = product_search_method)) +
   # using geom_bar() to generate 100% bar plot
   geom_bar(position = "fill", width = 0.5, color = "black") +
+  labs(fill = "Product Search Method") +
   # scaling x axis to have percentage
   scale_x_continuous("Percentage in each category", 
                      labels = scales::percent,
@@ -287,7 +287,7 @@ data |>
 
 ```
 
-```{r}
+```{r outliers_2, include=FALSE}
 diagnose_outlier(data) |>
   filter(outliers_ratio > 0) |>
   formattable()
@@ -297,14 +297,16 @@ data |>
     plot_outlier()
 ```
 
-```{r plot_data, include=FALSE}
+```{r plot_data}
 # Age distribution
 ggplot(data, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
-  labs(title="Age Distribution", x="Age", y="Frequency")
+  labs(title="Age Distribution", x="Age", y="Frequency") +
+  theme_minimal(base_size = 16)
 
 # Gender distribution
 ggplot(data, aes(x=gender)) + geom_bar(fill="orange") +
-  labs(title="Gender Distribution", x="Gender", y="Count")
+  labs(title="Gender Distribution", x="Gender", y="Count") +
+  theme_minimal(base_size = 16)
 
 ```
 
@@ -324,18 +326,22 @@ df_expanded <- data %>%
 
 ```
 
-```{r age_gender, include=FALSE}
+```{r age_gender}
 # Plotting a stacked barplot for representing purchase categories across different age groups
 ggplot(df_expanded, aes(x=purchase_category, fill=age_group)) +
-  geom_bar() +
+  geom_bar(position = "fill") +
   coord_flip() +
-  labs(title="Purchase Categories Across Age Groups", x="Purchase Category", y="Count")
+  scale_fill_brewer(palette="Set3") +
+  labs(title="Purchase Categories Across Age Groups", x="Purchase Category", y="Count") +
+  theme_minimal(base_size = 16)
 
 # Plotting a stacked barplot for representing purchase categories across different genders
 ggplot(df_expanded, aes(x=purchase_category, fill=gender)) +
-  geom_bar() +
+  geom_bar(position = "fill") +
   coord_flip() +
-  labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count")
+  scale_fill_brewer(palette="Set3") +
+  labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count") +
+  theme_minimal(base_size = 16)
 ```
 
 ```{r log_regr, include=FALSE}
@@ -351,7 +357,7 @@ models <- list()
 reports <- list()
 ```
 
-```{r predictions_2, include=FALSE}
+```{r predictions_2}
 for (category in unique_categories) {
   # Binary variable for each category
   df_expanded[[category]] <- ifelse(df_expanded$purchase_category == category, 1, 0)

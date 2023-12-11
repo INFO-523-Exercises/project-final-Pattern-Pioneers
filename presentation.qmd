@@ -21,18 +21,316 @@ execute:
   echo: false
 ---
 
-## Our Dataset {auto-animate="true"}
+```{r install_packages, include=FALSE}
+### Loading the required libraries
+if (!require(pacman))
+  install.packages(pacman)
+
+pacman::p_load(tidyverse,   # Data wrangling
+               dlookr,      # Exploratory Data Analysis
+               formattable, # Present neat table format
+               gt,          # Alternating formatting for the tables
+               gtsummary,
+               here,
+               nnet,
+               janitor,
+               corrplot,
+               dplyr,
+               caret,
+               formattable)       # Summary for the tables
+```
+
+```{r read_data, include=FALSE}
+# Using the original data
+# Loading the csv into a variable using read_csv
+
+data <- read_csv(here("data", "Amazon_Customer_Behavior_Survey.csv"))
+
+# Removing unwanted column like "timestamp".
+data <- data %>% 
+  select(-Timestamp) %>%
+  clean_names()
+```
 
 ## Our Dataset {auto-animate="true"}
+
+-   **Amazon consumer Behaviour Dataset** that we came across in [Kaggle](https://www.kaggle.com/datasets/swathiunnikrishnan/amazon-consumer-behaviour-dataset/data) was to unveil some customer insights.
+
+-   A comprehensive collection of customer interactions, browsing patterns within the Amazon ecosystem.
 
 ## Question 1 {.smaller}
 
-## Approach {.smaller}
+What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
+
+-   Approach
+
+## EDA Results {auto-animate="true"}
+
+```{r eda_1}
+# Calculate the counts of each category
+improvement_counts <- data %>%
+  group_by(improvement_areas) %>%
+  summarize(count = n()) %>%
+  arrange(desc(count)) %>%
+  ungroup()
+
+# Get the top 4 categories
+top_improvement_areas <- head(improvement_counts, 4)$improvement_areas
+
+# Create a new column 'grouped_improvement_areas' where categories outside the top 4 are labeled 'Others'
+data <- data %>%
+  mutate(grouped_improvement_areas = ifelse(improvement_areas %in% top_improvement_areas, 
+                                            improvement_areas, 
+                                            'Others'))
+
+# Reorder the factor levels to ensure "Others" is at the end
+data$grouped_improvement_areas <- factor(data$grouped_improvement_areas,
+                                         levels = c(top_improvement_areas, "Others"))
+
+# Plot with top 4 categories and 'Others' at the end
+ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
+  geom_bar(color="black") +
+  theme_minimal(base_size = 16) +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.position = "none") +
+  labs(title = "Distribution of Top 4 Improvement Areas and Others", 
+       x = "Improvement Areas", 
+       y = "Count") +
+  scale_fill_brewer(palette="Set3")  # Using a ColorBrewer palette for fill colors
+
+```
+
+## EDA Results {auto-animate="true"}
+
+```{r eda_2}
+# Distribution of Age Among Respondents with a color
+ggplot(data, aes(x=age)) +
+  geom_histogram(binwidth = 1, fill="skyblue", color="black") +  # Setting fill and outline color for the bars
+  theme_minimal(base_size = 16) +
+  labs(title = "Distribution of Age Among Respondents", x = "Age", y = "Count")
+```
+
+## EDA Results {auto-animate="true"}
+
+```{r eda_3}
+
+# Distribution of Purchase Frequency with colors
+ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
+  geom_bar(color="black") +
+  scale_fill_brewer(palette="Set3") +  # Using a ColorBrewer palette for fill colors
+  theme_minimal(base_size = 16) +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.position = "none") +
+  labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
+```
+
+## Correlation
+
+```{r new_df, include=FALSE}
+# creating a new dataframe by selecting only the columns of our focus
+
+new_df <-
+  data %>% select(
+    purchase_frequency,
+    product_search_method,
+    customer_reviews_importance,
+    cart_abandonment_factors
+  )
+```
+
+```{r refactor_new_df, include=FALSE}
+# modifying the column data type to factor and then to integer
+new_df$purchase_frequency <- as.factor(new_df$purchase_frequency)
+new_df$purchase_frequency <- as.integer(new_df$purchase_frequency)
+
+unique(new_df$purchase_frequency)
+
+# modifying the column data type to factor and then to integer
+new_df$product_search_method <-
+  as.factor(new_df$product_search_method)
+new_df$product_search_method <-
+  as.integer(new_df$product_search_method)
+
+unique(new_df$product_search_method)
+
+# modifying the column data type to factor and then to integer
+new_df$cart_abandonment_factors <-
+  as.factor(new_df$cart_abandonment_factors)
+new_df$cart_abandonment_factors <-
+  as.integer(new_df$cart_abandonment_factors)
+
+unique(new_df$cart_abandonment_factors)
+
+# modifying the column data type to factor and then to integer
+new_df$customer_reviews_importance <-
+  as.factor(new_df$customer_reviews_importance)
+new_df$customer_reviews_importance <-
+  as.integer(new_df$customer_reviews_importance)
+
+unique(new_df$customer_reviews_importance)
+
+# removing missing values from the dataframe
+new_df = na.omit(new_df)
+```
+
+```{r correlation, include=FALSE}
+# creating correlation matrix using cor()
+correlation_matrix <- cor(new_df)
+
+# Display the correlation matrix
+correlation_matrix
+```
+
+```{r corrplot}
+# Visualize correlation matrix using corrplot
+
+corrplot(correlation_matrix, method = "circle")
+```
+
+## Modeling
+
+```{r traning_1, include=FALSE}
+set.seed(123) # For reproducibility
+
+# training the dataset by splitting the data to 80% training
+train_index <-
+  sample(1:nrow(new_df), 0.8 * nrow(new_df)) # 80% for training
+
+# getting train and test data
+train_data <- new_df[train_index,]
+test_data <- new_df[-train_index,]
+
+ncol(train_data)
+```
+
+```{r model}
+# calling the nnet model with Cart_Abandonment_Factors and Product_Search_Method being our focus
+
+model <- nnet(
+  cart_abandonment_factors ~ product_search_method,
+  data = train_data,
+  size = 100,
+  maxit = 1000
+)
+```
+
+```{r predictions}
+# generating predictions on the test data using the created model above
+predictions <- predict(model, newdata = test_data)
+
+# getting accuracy of our predictions
+accuracy <-
+  mean(predictions == test_data$cart_abandonment_factors) * 100
+
+accuracy
+```
 
 ## Question 2 {.smaller}
 
-## Approach {.smaller}
+Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
+
+## EDA Results {auto-animate="true"}
+
+```{r plot_data}
+# Age distribution
+ggplot(data, aes(x=age)) + geom_histogram(bins=30, fill="blue", color="black") +
+  labs(title="Age Distribution", x="Age", y="Frequency") +
+  theme_minimal(base_size = 16)
+```
+
+## EDA Results {auto-animate="true"}
+
+```{r eda_results}
+# Gender distribution
+ggplot(data, aes(x=gender)) + geom_bar(fill="orange") +
+  labs(title="Gender Distribution", x="Gender", y="Count") +
+  theme_minimal(base_size = 16)
+
+```
+
+```{r age_group_data, include=FALSE}
+# Creating afe group based on age
+data$age_group <- cut(data$age, breaks=c(0, 18, 25, 35, 45, 55, 65, 100),
+                    labels=c('0-18', '19-25', '26-35', '36-45', '46-55', '56-65', '65+'))
+
+```
+
+```{r splitting purchase categories, include=FALSE}
+# We are going to split the rows having multiple purchase categories into multiple rows with same data in other columns but split up with respect to purchasing categories.
+# Splitting 'Purchase_Categories'
+df_expanded <- data %>%
+  separate_rows(purchase_categories, sep=";") %>%
+  rename(purchase_category = purchase_categories)
+
+```
+
+## EDA Results {auto-animate="true"}
+
+```{r age_gender}
+# Plotting a stacked barplot for representing purchase categories across different age groups
+ggplot(df_expanded, aes(x=purchase_category, fill=age_group)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette="Set3") +
+  labs(title="Purchase Categories Across Age Groups", x="Purchase Category", y="Count") +
+  theme_minimal(base_size = 16)
+```
+
+## EDA Results {auto-animate="true"}
+
+```{r eda_21}
+# Plotting a stacked barplot for representing purchase categories across different genders
+ggplot(df_expanded, aes(x=purchase_category, fill=gender)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  scale_fill_brewer(palette="Set3") +
+  labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count") +
+  theme_minimal(base_size = 16)
+```
+
+```{r log_regr, include=FALSE}
+
+# Preparing the data for logistic regression
+df_expanded <- df_expanded |>
+    mutate(purchase_category = ifelse(is.na(purchase_category), 
+                                   NA, 
+                                   tolower(gsub(" ", "_", purchase_category))))
+
+unique_categories <- unique(df_expanded$purchase_category)
+models <- list()
+reports <- list()
+```
+
+## Modeling
+
+```{r predictions_2, include=FALSE}
+for (category in unique_categories) {
+  # Binary variable for each category
+  df_expanded[[category]] <- ifelse(df_expanded$purchase_category == category, 1, 0)
+  
+  # Model
+  model_formula <- as.formula(paste(category, "~ age_group + gender"))
+  model <- multinom(model_formula, data=df_expanded)
+  
+  # Store the model
+  models[[category]] <- model
+  
+  # Evaluation
+  predictions <- predict(model, df_expanded)
+  reports[[category]] <- confusionMatrix(data=factor(predictions, levels=c(0,1)), 
+                                         reference=factor(df_expanded[[category]], levels=c(0,1)))
+}
+```
+
+```{r results}
+# Displaying the report for an example category
+print(reports[[unique_categories[1]]])
+```
 
 ## Challenges faced {auto-animate="true"}
 
+-   Data
+
 ## Outcome {.smaller auto-animate="true"}
+
+-   Exploring various Data Mining Techniques
