@@ -33,7 +33,10 @@ pacman::p_load(tidyverse,   # Data wrangling
                corrplot,
                dplyr,
                caret,
-               formattable)       # Summary for the tables
+               formattable,
+               rpart,
+               rpart.plot
+)       # Summary for the tables
 ```
 
 ## Abstract
@@ -247,6 +250,32 @@ accuracy <-
   mean(predictions == test_data$cart_abandonment_factors) * 100
 
 accuracy
+```
+
+```{r}
+# Using a decision tree classifier
+# Convert factors to categorical
+data$cart_abandonment_factors <- as.factor(data$cart_abandonment_factors)
+data$product_search_method <- as.factor(data$product_search_method)
+
+# Splitting the data (example using 70%-30% split)
+set.seed(123)  # for reproducibility
+splitIndex <- createDataPartition(data$cart_abandonment_factors, p = 0.70, list = FALSE)
+train <- data[splitIndex, ]
+test <- data[-splitIndex, ]
+
+# Train the model
+tree_model <- rpart(cart_abandonment_factors ~ product_search_method, data = train, method = "class")
+
+# Evaluate the model (using test set)
+predictions <- predict(tree_model, test, type = "class")
+
+# Model accuracy
+accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
+
+# Visualize the tree
+rpart.plot(tree_model)
+
 ```
 
 ### Discussion
