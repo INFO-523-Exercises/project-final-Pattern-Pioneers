@@ -87,7 +87,7 @@ data <- data %>%
 ## Our Dataset {.smaller}
 
 | Variable                              | Description                                                                                |
-|------------------------|------------------------------------------------|
+|-------------------------|------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -142,12 +142,33 @@ What are the factors influencing the customer's decision to abandon a purchase i
 ## Approach For Question 1 {.smaller}
 
 ::: incremental
--   Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency.
+-   **Data Cleaning:**- Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in columns age, Gender, and Browsing_Frequency.
 
 -   We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment.
 
--   Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+-   **Visualization**- For visualisation we utilize the ggplot2 package for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
 :::
+
+## Pre Processing {.smaller}
+
+- Upon examining the data, we observed that a single purchase, represented by a row, was associated with multiple purchase categories.
+
+
+```{r, warning=FALSE,echo=FALSE}
+data|>head()|>formattable()
+```
+
+## Pre Processing {.smaller}
+
+- To address this issue and ensure data consistency, we chose to split the categories into separate rows.
+
+```{r,warning=FALSE,echo=FALSE,eval=TRUE}
+df_expand <- data %>%
+  separate_rows(purchase_categories, sep=";") %>%
+  rename(purchase_category = purchase_categories)
+
+df_expand |> head() |> formattable()
+```
 
 ## EDA Results - Age Distribution {auto-animate="true"}
 
@@ -237,6 +258,13 @@ correlation_matrix
 corrplot(correlation_matrix, method = "color")
 ```
 
+## Models Used
+::: incremental
+- Neural Networks
+- Decision Tree
+:::
+
+
 ## Modeling - NNET {auto-animate="true"}
 
 ```{r traning_1, include=FALSE}
@@ -307,6 +335,7 @@ accuracy <- sum(predictions == test$cart_abandonment_factors) / nrow(test)
 # Visualize the tree
 rpart.plot(tree_model)
 ```
+- **Key Takeaway-** The most important factor for people abandoning there carts was that "they found a better price elsewhere"
 
 ## Question 2 {.smaller}
 
