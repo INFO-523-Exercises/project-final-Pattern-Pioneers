@@ -462,7 +462,7 @@ for (category in unique_categories) {
 print(reports[[unique_categories[1]]])
 ```
 
-## Challenges faced {auto-animate="true"}
+## Challenges faced {.smaller auto-animate="true"}
 
 ::: incremental
 -   Insufficient amount of data to conduct a full fledged analysis on cart abandonment factors.
