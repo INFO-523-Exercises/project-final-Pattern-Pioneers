@@ -193,6 +193,21 @@ ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
   labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
 ```
 
+
+## EDA Results - Purchase Frequency {auto-animate="true"}
+
+```{r eda_3}
+
+# Distribution of Purchase Frequency with colors
+ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
+  geom_bar(color="black") +
+  scale_fill_brewer(palette="Set3") +  # Using a ColorBrewer palette for fill colors
+  theme_minimal(base_size = 16) +
+  theme(axis.text.x = element_text(angle = 0),
+        legend.position = "none") +
+  labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
+```
+
 ```{r new_df, include=FALSE}
 # creating a new dataframe by selecting only the columns of our focus
 
