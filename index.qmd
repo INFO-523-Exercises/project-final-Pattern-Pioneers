@@ -52,19 +52,16 @@ data <- data %>%
   clean_names()
 ```
 
-## Question 1
-
-**What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?**
-
 ## Introduction
 
-## Question 1
+## Question 1: What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
 
 ### Introduction
 
 ### Approach
 
 Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like logistic regression to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+
 ```{r get_cols}
 colnames(data)
 ```
@@ -254,9 +251,7 @@ accuracy <-
 accuracy
 ```
 
-## Question 2
-
-### Introduction
+## Question 2: Which demographic (on the basis of gender and age) is most likely to purchase a particular product category?
 
 ### Approach
 
@@ -276,8 +271,6 @@ data |>
 
 
 ```
-
-## Diagnosing data
 
 ```{r diagnose, include=FALSE}
 data |>
@@ -323,8 +316,6 @@ df_expanded <- data %>%
 
 ```
 
-## Data Visualization
-
 ```{r age_gender, include=FALSE}
 # Plotting a stacked barplot for representing purchase categories across different age groups
 ggplot(df_expanded, aes(x=purchase_category, fill=age_group)) +
@@ -338,8 +329,6 @@ ggplot(df_expanded, aes(x=purchase_category, fill=gender)) +
   coord_flip() +
   labs(title="Purchase Categories Across Genders", x="Purchase Category", y="Count")
 ```
-
-### Applying a logistical regression model
 
 ```{r log_regr, include=FALSE}
 
