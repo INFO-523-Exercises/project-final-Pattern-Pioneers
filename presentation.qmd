@@ -74,6 +74,7 @@ data <- data %>%
 
 ## Our Dataset {auto-animate="true"}
 
+::: incremental
 -   **Amazon Consumer Behaviour Dataset** that we came across in [Kaggle](https://www.kaggle.com/datasets/swathiunnikrishnan/amazon-consumer-behaviour-dataset/data) was to unveil some customer insights.
 
 -   It has a comprehensive collection of customer interactions, browsing patterns within the Amazon ecosystem.
@@ -81,11 +82,12 @@ data <- data %>%
 -   It includes a wide range of variables such as customer demographics, user interaction, and reviews.
 
 -   The dataset aims to provide insights into customer preferences, shopping habits, and decision-making processes on the Amazon platform
+:::
 
 ## Our Dataset {.smaller}
 
 | Variable                              | Description                                                                                |
-|-----------------------|-------------------------------------------------|
+|------------------------|------------------------------------------------|
 | Purchase_Frequency                    | How frequently does the user make purchases on Amazon?                                     |
 | Product_Search_Method                 | How does the user search for products on Amazon?                                           |
 | Customer_Reviews_Importance           | How important are customer reviews in users decision-making process?                       |
@@ -139,9 +141,13 @@ What are the factors influencing the customer's decision to abandon a purchase i
 
 ## Approach For Question 1 {.smaller}
 
-Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency.
+::: incremental
+-   Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency.
 
-We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+-   We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment.
+
+-   Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+:::
 
 ## EDA Results - Age Distribution {auto-animate="true"}
 
@@ -308,6 +314,7 @@ Which demographic (on the basis of gender and age) is most likely to purchase a 
 
 ## Approach For Question 2 {.smaller}
 
+::: incremental
 The approach that we took to solve determine which demographic is most likely to purchase a particular product category is as follows:
 
 -   **Data Cleaning:** We checked the data set for any inconsistencies like missing values or incorrect data. Then we tried to handle the outliers if they needed to be removed.
@@ -317,6 +324,7 @@ The approach that we took to solve determine which demographic is most likely to
 -   **Visualization:** After a few steps of data transformation which included splitting the rows having multiple purchase categories into multiple rows with same data in other columns we performed some visualizations using ggplot to represent the data with the bar plots which helped us to figure out some trends and patterns of our data.
 
 -   **Modelling:** In the final part we performed statistical modelling to assess the likelihood of purchasing different product categories based on demographic variables like age and gender. We achieved this goal by using logistic regression models to predict the probability of a particular demographic to purchase each category.
+:::
 
 ## EDA Results {auto-animate="true"}
 
@@ -424,10 +432,16 @@ print(reports[[unique_categories[1]]])
 
 ## Challenges faced {auto-animate="true"}
 
+::: incremental
 -   Insufficient amount of data to conduct a full fledged analysis on cart abandonment factors.
 -   The dataset contained time value for only a couple of weeks.
+-   Class Imbalance issue while modeling using logistic regression.
+-   Some models we tried are over fitting the data like random forest.
+:::
 
 ## Outcome {.smaller auto-animate="true"}
 
+::: incremental
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
+:::
