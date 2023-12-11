@@ -196,7 +196,7 @@ ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
 
 ## EDA Results - Purchase Frequency {auto-animate="true"}
 
-```{r eda_3}
+```{r eda_4}
 
 # Distribution of Purchase Frequency with colors
 ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
