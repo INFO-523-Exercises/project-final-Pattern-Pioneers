@@ -55,7 +55,7 @@ knitr::opts_chunk$set(
   fig.asp = 0.618,      # the golden ratio
   fig.retina = 1,       # dpi multiplier for displaying HTML output on retina
   fig.align = "center", # center align figures
-  dpi = 140             # higher dpi, sharper image
+  dpi = 200             # higher dpi, sharper image
 )
 ```
 
@@ -476,4 +476,5 @@ print(reports[[unique_categories[1]]])
 ::: incremental
 -   Exploring the pros and cons of neural networks in our dataset.
 -   Handling datasets and experimenting with models that can be applied for real-time use cases.
+- We identified the key factors which decides on the car abandonment.
 :::
