@@ -84,16 +84,6 @@ data <- data %>%
 | Search_Result_Exploration             | Does the user tend to explore multiple pages of search results or focus on the first page? |
 
 
-## Question 1 {.smaller}
-
-What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
-
-
-
-## Approach For Question 1 {.smaller}
-
-Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
-
 
 ## EDA Results- Top Improvement Areas {auto-animate="true"}
 
@@ -130,6 +120,19 @@ ggplot(data, aes(x=grouped_improvement_areas, fill=grouped_improvement_areas)) +
   scale_fill_brewer(palette="Set3")  # Using a ColorBrewer palette for fill colors
 
 ```
+
+
+
+## Question 1 {.smaller}
+
+What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?
+
+
+
+## Approach For Question 1 {.smaller}
+
+Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like neural networks and decision trees to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
+
 
 ## EDA Results - Age Distribution {auto-animate="true"}
 
@@ -261,7 +264,6 @@ predictions <- predict(model, newdata = test_data)
 accuracy <-
   mean(predictions == test_data$cart_abandonment_factors) * 100
 
-accuracy
 ```
 
 ## Modeling {auto-animate="true"}
