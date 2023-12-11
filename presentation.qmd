@@ -194,7 +194,7 @@ ggplot(data, aes(x=purchase_frequency, fill=purchase_frequency)) +
   labs(title = "Distribution of Purchase Frequency", x = "Purchase Frequency", y = "Count")
 ```
 
-## Correlation Matrix for Consumer Behaviour
+
 
 ```{r new_df, include=FALSE}
 # creating a new dataframe by selecting only the columns of our focus
@@ -251,12 +251,7 @@ correlation_matrix <- cor(new_df)
 correlation_matrix
 ```
 
-```{r corrplot}
-# Visualize correlation matrix using correlation plot
 
-
-corrplot(correlation_matrix, method = "color")
-```
 
 ## Models Used
 ::: incremental
@@ -264,6 +259,14 @@ corrplot(correlation_matrix, method = "color")
 - Decision Tree
 :::
 
+
+## Correlation Matrix for Consumer Behaviour
+```{r corrplot}
+# Visualize correlation matrix using correlation plot
+
+
+corrplot(correlation_matrix, method = "color")
+```
 
 ## Modeling - NNET {auto-animate="true"}
 
