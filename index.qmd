@@ -52,15 +52,13 @@ data <- data %>%
   clean_names()
 ```
 
-## **Introduction**
-
 ## Question 1
 
-### **Introduction**
+**What are the factors influencing the customer's decision to abandon a purchase in their cart on Amazon?**
 
 ### **Approach**
 
-### **Analysis**
+Our analysis begins with precise exploratory data analysis (EDA) in R, focusing on key variables like Purchase_Frequency, Product_Search_Method, and Customer_Reviews_Importance to understand their impact on cart abandonment. During data cleaning, we ensure proper formatting and address missing values in age, Gender, and Browsing_Frequency. We then apply statistical techniques like logistic regression to assess the influence of factors such as Personalized_Recommendation_Frequency and Search_Result_Exploration on cart abandonment. Visualization utilizes ggplot2 for creating comprehensive graphics, including correlation heat-maps and bar charts, to reveal insights into the interplay between cart abandonment and customer behavior metrics, aiming to enhance the shopping experience and reduce cart abandonment rates effectively.
 
 ### **Discussion**
 
@@ -221,6 +219,17 @@ data |>
 data |>
   diagnose() |>
   formattable()
+
+```
+
+```{r}
+diagnose_outlier(data) |>
+  filter(outliers_ratio > 0) |>
+  formattable()
+
+# Selecting desired columns 
+data |>
+    plot_outlier()
 ```
 
 ```{r plot_data, include=FALSE}
